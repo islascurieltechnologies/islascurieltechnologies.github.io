@@ -50,10 +50,10 @@
 <body>
 
 <div id="video-container">
-<video id="introVideo" autoplay playsinline preload="auto">
-  <source src="intro-ayala-nucleo-final.mp4" type="video/mp4">
-  Tu navegador no soporta este formato.
-</video>
+  <video id="introVideo" autoplay playsinline preload="auto">
+    <source src="intro-ayala-nucleo-final.mp4" type="video/mp4">
+    Tu navegador no soporta este formato.
+  </video>
 </div>
 
 <div id="texto"></div>
@@ -63,7 +63,7 @@
   const texto = "Bienvenido, a Islas Curiel Technologies. Donde la tecnología se encuentra con el alma.";
   const textoDiv = document.getElementById("texto");
   const boton = document.getElementById("boton-entrar");
-  const video = document.getElementById("intro");
+  const video = document.getElementById("introVideo");
 
   setTimeout(() => {
     textoDiv.style.opacity = 1;
