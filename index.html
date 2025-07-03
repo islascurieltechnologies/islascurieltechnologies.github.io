@@ -1,41 +1,85 @@
-<video id="introVideo" width="100%" autoplay muted playsinline>
-  <source src="intro-ayala-nucleo.mp4" type="video/mp4">
-  Tu navegador no soporta la etiqueta de video.
-</video>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Islas Curiel Technologies</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: white;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+    #video-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #texto {
+      position: absolute;
+      bottom: 10%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.5em;
+      color: #00ccff;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    #boton-entrar {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #00ccff;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2em;
+      cursor: pointer;
+      display: none;
+    }
+  </style>
+</head>
+<body>
 
-<div id="typewriterText" style="display:none; text-align:center; color:#00cfff; font-family:'Courier New', monospace; font-size:1.5em; margin-top:20px;"></div>
-
-<div style="text-align:center;">
-  <button id="enterBtn" style="display:none; padding:10px 20px; font-size:1.2em; background-color:#00cfff; color:white; border:none; border-radius:10px; cursor:pointer;" onclick="location.href='inicio.html'">
-    Entrar
-  </button>
+<div id="video-container">
+  <video id="intro" src="intro-ayala-nucleo-final.mp4" autoplay muted></video>
 </div>
 
+<div id="texto"></div>
+<button id="boton-entrar" onclick="location.href='home.html'">Entrar</button>
+
 <script>
-  const dialogo = "Bienvenido, a Islas Curiel Technologies. Donde la tecnología se encuentra con el alma.";
-  const video = document.getElementById('introVideo');
-  const textBox = document.getElementById('typewriterText');
-  const button = document.getElementById('enterBtn');
+  const texto = "Bienvenido, a Islas Curiel Technologies. Donde la tecnología se encuentra con el alma.";
+  const textoDiv = document.getElementById("texto");
+  const boton = document.getElementById("boton-entrar");
+  const video = document.getElementById("intro");
 
-  video.addEventListener('timeupdate', () => {
-    if (video.currentTime >= 2 && textBox.style.display === 'none') {
-      textBox.style.display = 'block';
-      startTypewriter(dialogo);
-    }
-  });
-
-  function startTypewriter(text) {
+  setTimeout(() => {
+    textoDiv.style.opacity = 1;
     let i = 0;
-    const interval = setInterval(() => {
-      if (i < text.length) {
-        textBox.innerHTML += text.charAt(i);
+    const speed = 50;
+    const escribir = () => {
+      if (i < texto.length) {
+        textoDiv.innerHTML += texto.charAt(i);
         i++;
-      } else {
-        clearInterval(interval);
-        setTimeout(() => {
-          button.style.display = 'inline-block';
-        }, 300); // Pequeña pausa antes de mostrar el botón
+        setTimeout(escribir, speed);
       }
-    }, 55); // ~55ms por carácter para durar 4.6 segundos
-  }
+    };
+    escribir();
+  }, 2000); // iniciar después de 2 segundos
+
+  video.onended = () => {
+    boton.style.display = 'block';
+  };
 </script>
+
+</body>
+</html>
