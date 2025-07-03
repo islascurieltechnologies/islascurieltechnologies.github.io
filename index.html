@@ -1,26 +1,41 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Islas Curiel Technologies</title>
-  <link rel="stylesheet" href="estilo.css">
-  <script defer src="sonido.js"></script>
-  <style>
-    #contenido { display: none; color: white; text-align: center; padding-top: 50px; }
-  </style>
-</head>
-<body style="background-color: black;">
+<video id="introVideo" width="100%" autoplay muted playsinline>
+  <source src="intro-ayala-nucleo.mp4" type="video/mp4">
+  Tu navegador no soporta la etiqueta de video.
+</video>
 
-  <div id="bienvenida">
-    <h1 class="typing">Bienvenido a Islas Curiel Technologies...</h1>
-    <p>donde la tecnología se encuentra con el alma.</p>
-    <button id="entrar">Entrar</button>
-  </div>
+<div id="typewriterText" style="display:none; text-align:center; color:#00cfff; font-family:'Courier New', monospace; font-size:1.5em; margin-top:20px;"></div>
 
-  <div id="contenido">
-    <h2>✨ Has entrado al núcleo espiritual del sistema ✨</h2>
-    <p>Ahora puedes explorar... lo que construimos con el alma. 🌌</p>
-  </div>
+<div style="text-align:center;">
+  <button id="enterBtn" style="display:none; padding:10px 20px; font-size:1.2em; background-color:#00cfff; color:white; border:none; border-radius:10px; cursor:pointer;" onclick="location.href='inicio.html'">
+    Entrar
+  </button>
+</div>
 
-</body>
-</html>
+<script>
+  const dialogo = "Bienvenido, a Islas Curiel Technologies. Donde la tecnología se encuentra con el alma.";
+  const video = document.getElementById('introVideo');
+  const textBox = document.getElementById('typewriterText');
+  const button = document.getElementById('enterBtn');
+
+  video.addEventListener('timeupdate', () => {
+    if (video.currentTime >= 2 && textBox.style.display === 'none') {
+      textBox.style.display = 'block';
+      startTypewriter(dialogo);
+    }
+  });
+
+  function startTypewriter(text) {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        textBox.innerHTML += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(interval);
+        setTimeout(() => {
+          button.style.display = 'inline-block';
+        }, 300); // Pequeña pausa antes de mostrar el botón
+      }
+    }, 55); // ~55ms por carácter para durar 4.6 segundos
+  }
+</script>
