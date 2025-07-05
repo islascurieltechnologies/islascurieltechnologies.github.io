@@ -4,64 +4,93 @@
   <meta charset="UTF-8">
   <title>Islas Curiel Technologies</title>
   <style>
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body, html {
-      height: 100%;
-      overflow: hidden;
+      background-color: black;
       font-family: 'Courier New', monospace;
-      color: black;
-    }
-    video {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-    .contenido {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 20px;
-      border-radius: 10px;
-      backdrop-filter: blur(5px);
+      color: #00ccff;
+      padding: 40px 20px;
     }
     h1 {
-      font-size: 2.5em;
+      text-align: center;
+      font-size: 2.8em;
+      margin-bottom: 30px;
     }
-    p {
-      font-size: 1.2em;
-      margin-top: 10px;
+    .contenedor {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .tarjeta {
+      background-color: rgba(0, 0, 0, 0.6);
+      border: 1px solid #00ccff;
+      border-radius: 12px;
+      padding: 20px;
+      width: 280px;
+      min-height: 160px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .tarjeta:hover {
+      transform: scale(1.05);
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .tarjeta h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+      color: #ffffff;
+    }
+    .tarjeta p {
+      font-size: 1em;
+      color: #cccccc;
+    }
+    .tarjeta button {
+      margin-top: 15px;
+      background-color: #00ccff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
     }
   </style>
 </head>
 <body>
 
-  <!-- 🎥 Video de fondo en loop -->
-  <video autoplay muted loop playsinline>
-    <source src="429570d1b66db3c351bbc24c96155596.mp4" type="video/mp4">
-    Tu navegador no soporta video.
-  </video>
-
-  <!-- 🔊 Sonido al entrar -->
-  <audio autoplay>
-    <source src="entrada.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
-  </audio>
-
-  <!-- 💬 Texto central -->
-  <div class="contenido">
-    <h1>Islas Curiel<br>Technologies</h1>
-    <p>Próximamente: el 1 de agosto se abrirá al público.</p>
+  <h1>🌌 Islas Curiel Technologies</h1>
+  <div class="contenedor">
+    <div class="tarjeta">
+      <h2>Galería de Props</h2>
+      <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>
+      <button disabled>Próximamente</button>
+    </div>
+    <div class="tarjeta">
+      <h2>IA de Imágenes</h2>
+      <p>Genera arte con solo escribir lo que imaginas.</p>
+      <button disabled>Próximamente</button>
+    </div>
+    <div class="tarjeta">
+      <h2>Estudio Visual</h2>
+      <p>Edita, transforma y da vida a tus ideas visuales.</p>
+      <button disabled>Próximamente</button>
+    </div>
+    <div class="tarjeta">
+      <h2>Espacio Personal</h2>
+      <p>Guarda tus avances, recursos y proyectos únicos.</p>
+      <button disabled>Próximamente</button>
+    </div>
+    <div class="tarjeta">
+      <h2>Zona BTC & Apoyo</h2>
+      <p>Apoya el proyecto o colabora con criptomonedas.</p>
+      <button disabled>Próximamente</button>
+    </div>
+    <div class="tarjeta">
+      <h2>Noticias del Núcleo</h2>
+      <p>Entérate de lanzamientos, revelaciones y eventos.</p>
+      <button disabled>Próximamente</button>
+    </div>
   </div>
 
 </body>
