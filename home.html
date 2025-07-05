@@ -4,62 +4,55 @@
   <meta charset="UTF-8">
   <title>Islas Curiel Technologies</title>
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    body, html {
-      width: 100%;
-      height: 100%;
       overflow: hidden;
       font-family: 'Courier New', monospace;
       color: black;
     }
+
     video {
       position: fixed;
-      top: 50%;
-      left: 50%;
+      right: 0;
+      bottom: 0;
       min-width: 100%;
       min-height: 100%;
-      width: auto;
-      height: auto;
-      z-index: -1;
-      transform: translate(-50%, -50%);
       object-fit: cover;
+      z-index: -1;
     }
-    .contenido {
+
+    .texto {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
+      background-color: rgba(255,255,255,0.1);
       padding: 20px;
-      background-color: rgba(255, 255, 255, 0.0);
+      border-radius: 10px;
     }
+
     h1 {
       font-size: 2.5em;
-      color: black;
+      margin-bottom: 10px;
     }
+
     p {
       font-size: 1.2em;
-      color: black;
-      max-width: 800px;
-      margin: auto;
+      margin: 0;
     }
   </style>
 </head>
 <body>
-
   <video autoplay muted loop playsinline>
-    <source src="intro-cumminson-zone.mp4" type="video/mp4">
+    <source src="429570d1b66db3c351bbc24c96155596.mp4" type="video/mp4">
     Tu navegador no soporta video.
   </video>
 
-  <div class="contenido">
+  <div class="texto">
     <h1>Islas Curiel Technologies</h1>
-    <p>Gracias por entrar. Aquí es donde la tecnología se une con el alma, donde tu visión toma forma, y el universo escucha tu intención. ✨</p>
+    <p>Próximamente: el 1 de agosto se abrirá al público.</p>
   </div>
-
 </body>
 </html>
