@@ -4,18 +4,37 @@
   <meta charset="UTF-8">
   <title>Bienvenido a Islas Curiel</title>
   <style>
-    body {
+    body, html {
       margin: 0;
-      background-color: black;
-      color: #00ccff;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
       font-family: 'Courier New', monospace;
+      color: #00ccff;
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .contenido {
+      position: relative;
+      z-index: 2;
       text-align: center;
       padding: 60px 20px;
     }
+
     h1 {
       font-size: 2.5em;
       margin-bottom: 20px;
     }
+
     p {
       font-size: 1.2em;
       max-width: 700px;
@@ -24,14 +43,21 @@
   </style>
 </head>
 <body>
-  <h1>🌌 Islas Curiel Technologies</h1>
-  <p>Gracias por entrar. Aquí es donde la tecnología se une con el alma, donde tu visión toma forma, y el universo escucha tu intención. ✨</p>
 
-  <audio autoplay>
-    <source src="entrada.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
-  </audio>
-<video autoplay muted playsinline style>
-  <source src="intro-cumminson-zone.mp4" type="video/mp4">
-  Tu navegador no soporta video.
-</video>
+  <video autoplay muted loop playsinline class="video-bg">
+    <source src="intro-cumminson-zone.mp4" type="video/mp4">
+    Tu navegador no soporta video.
+  </video>
+
+  <div class="contenido">
+    <h1>🌌 Islas Curiel Technologies</h1>
+    <p>Gracias por entrar. Aquí es donde la tecnología se une con el alma, donde tu visión toma forma, y el universo escucha tu intención. ✨</p>
+
+    <audio autoplay>
+      <source src="entrada.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio.
+    </audio>
+  </div>
+
+</body>
+</html>
