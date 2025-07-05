@@ -92,7 +92,7 @@
       <button disabled>Próximamente</button>
     </div>
   </div>
-
+<button class="popup-trigger">Explorar visiones</button>
 </body>
   <!-- POPUP -->
 <div id="popup-galeria" style="display:none;">
@@ -104,7 +104,25 @@
     <button class="popup-btn">Explorar próximamente</button>
   </div>
 </div>
+<script>
+  const popup = document.getElementById("popup-galeria");
+  const openBtn = document.querySelector(".popup-trigger");
+  const closeBtn = document.getElementById("popup-close");
 
+  openBtn.addEventListener("click", () => {
+    popup.style.display = "block";
+  });
+
+  closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      popup.style.display = "none";
+    }
+  });
+</script>
 <!-- ESTILOS DEL POPUP -->
 <style>
 #popup-galeria {
