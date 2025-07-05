@@ -63,8 +63,8 @@
   <div class="contenedor">
     <div class="tarjeta">
       <h2>Galería de Props</h2>
-      <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>
-      <button disabled>Próximamente</button>
+<p>Explora y descarga imágenes exclusivas para tus creaciones.</p>
+<button class="popup-trigger">Explorar visiones</button>
     </div>
     <div class="tarjeta">
       <h2>IA de Imágenes</h2>
@@ -94,4 +94,78 @@
   </div>
 
 </body>
+  <!-- POPUP -->
+<div id="popup-galeria" style="display:none;">
+  <div id="popup-overlay"></div>
+  <div id="popup-content">
+    <span id="popup-close">&times;</span>
+    <h2>🌌 Galería de Props</h2>
+    <p>Aquí comienzan tus visiones visuales…<br>Explora, descarga y transforma tu mundo interior.</p>
+    <button class="popup-btn">Explorar próximamente</button>
+  </div>
+</div>
+
+<!-- ESTILOS DEL POPUP -->
+<style>
+#popup-galeria {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 999;
+  font-family: 'Courier New', monospace;
+}
+
+#popup-overlay {
+  background-color: rgba(0,0,0,0.8);
+  width: 100%; height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+}
+
+#popup-content {
+  background-color: #000;
+  color: #00ccff;
+  border: 2px solid #00ccff;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 30px #00ccff55;
+}
+
+#popup-close {
+  position: absolute;
+  top: 10px; right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #00ccff;
+}
+
+.popup-btn {
+  background-color: #00ccff;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+</style>
+
+<!-- SCRIPT PARA ABRIR Y CERRAR -->
+<script>
+document.querySelectorAll('.popup-trigger').forEach(btn => {
+  btn.onclick = () => {
+    document.getElementById('popup-galeria').style.display = 'block';
+  };
+});
+
+document.getElementById('popup-close').onclick = () => {
+  document.getElementById('popup-galeria').style.display = 'none';
+};
+</script>
 </html>
