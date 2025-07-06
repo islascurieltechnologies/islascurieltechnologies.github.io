@@ -1,3 +1,6 @@
+from pathlib import Path
+
+html_content = """
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,10 +9,10 @@
   <style>
     body {
       margin: 0;
+      padding: 0;
       background-image: url('activos/fondo-hacklab.jpg');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
       background-repeat: no-repeat;
       font-family: 'Courier New', monospace;
       color: #00ccff;
@@ -109,7 +112,7 @@
 
   <h1> Islas Curiel Technologies</h1>
   <p style="text-align: center; color: #00ccff; font-size: 20px; margin-top: 20px;">
-    Explorando la fusión entre la mente, el arte y la tecnología
+    Explorando la fusión entre la mente, el arte y la tecnología 
   </p>
 
   <div class="contenedor">
@@ -145,7 +148,6 @@
     </div>
   </div>
 
-  <!-- AUDIO -->
   <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
   <script>
     window.addEventListener("click", () => {
@@ -154,12 +156,11 @@
     }, { once: true });
   </script>
 
-  <!-- POPUP -->
   <div id="popup-galeria">
     <div id="popup-overlay"></div>
     <div id="popup-content">
       <span id="popup-close">&times;</span>
-      <h2> Galería de Props</h2>
+      <h2>🌌 Galería de Props</h2>
       <p>Aquí comienzan tus visiones visuales…<br>Explora, descarga y transforma tu mundo interior.</p>
       <button class="popup-btn">Explorar próximamente</button>
     </div>
@@ -185,10 +186,11 @@
     });
   </script>
 
-  <!-- MENSAJE BINARIO -->
-  <div style="position: fixed; bottom: 15px; width: 100%; text-align: center; font-family: monospace; font-size: 14px; color: #00ff99; text-shadow: 0 0 5px #00ff99;">
-    01001100 01100001 00100000 01100100 01101001 01110110 01101001 01101110 01101001 01100100 01100001 01100100 00100000 01101110 01101111 01110011 00100000 01101111 01100010 01110011 01100101 01110010 01110110 01100001
-  </div>
-
 </body>
 </html>
+"""
+
+# Guardar como archivo HTML
+output_path = Path("/mnt/data/inicio_home_actualizado.html")
+output_path.write_text(html_content, encoding='utf-8')
+output_path
