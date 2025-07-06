@@ -138,8 +138,14 @@
   </div>
 
   <!-- AUDIO -->
-  <audio id="popup-audio" src="https://cdn.pixabay.com/download/audio/2023/03/26/audio_cbe1957b87.mp3?filename=button-124476.mp3" preload="auto"></audio>
-
+<audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
+<script>
+  // Reproduce el audio al primer toque del usuario
+  window.addEventListener("click", () => {
+    const sonido = document.getElementById("intro-sound");
+    if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
+  }, { once: true });
+</script>
   <!-- POPUP -->
   <div id="popup-galeria">
     <div id="popup-overlay"></div>
