@@ -12,22 +12,22 @@
       background-position: center;
       background-repeat: no-repeat;
       font-family: 'Courier New', monospace;
-      color: #00ccff;
+      color: white;
       padding: 40px 20px;
     }
 
     h1 {
       text-align: center;
-      font-size: 2.8em;
-      margin-bottom: 30px;
-      color: #00ccff;
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      color: white;
     }
 
     p {
       text-align: center;
-      color: #00ccff;
-      font-size: 20px;
-      margin-top: 20px;
+      color: white;
+      font-size: 1.1em;
+      margin-top: 10px;
     }
 
     .contenedor {
@@ -39,7 +39,7 @@
 
     .tarjeta {
       background-color: rgba(0, 0, 0, 0.6);
-      border: 1px solid #00ccff;
+      border: 1px solid white;
       border-radius: 12px;
       padding: 20px;
       width: 280px;
@@ -66,8 +66,8 @@
 
     .tarjeta button {
       margin-top: 15px;
-      background-color: #00ccff;
-      color: white;
+      background-color: white;
+      color: black;
       border: none;
       padding: 10px 20px;
       border-radius: 8px;
@@ -81,7 +81,6 @@
       cursor: not-allowed;
     }
 
-    /* Popup */
     #popup-galeria {
       position: fixed;
       top: 0; left: 0;
@@ -100,8 +99,8 @@
 
     #popup-content {
       background-color: #000;
-      color: #00ccff;
-      border: 2px solid #00ccff;
+      color: white;
+      border: 2px solid white;
       padding: 30px;
       width: 90%;
       max-width: 400px;
@@ -110,7 +109,7 @@
       transform: translate(-50%, -50%);
       border-radius: 20px;
       text-align: center;
-      box-shadow: 0 0 30px #00ccff55;
+      box-shadow: 0 0 30px #ffffff55;
     }
 
     #popup-close {
@@ -118,38 +117,17 @@
       top: 10px; right: 20px;
       font-size: 24px;
       cursor: pointer;
-      color: #00ccff;
+      color: white;
     }
 
     .popup-btn {
-      background-color: #00ccff;
+      background-color: white;
       color: black;
       border: none;
       padding: 10px 20px;
       border-radius: 12px;
       margin-top: 20px;
       cursor: pointer;
-    }
-
-    .typing {
-      display: inline-block;
-      border-right: 2px solid #00ccff;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 3.5s steps(40, end), blink 0.7s step-end infinite;
-      max-width: 100%;
-      font-size: 1.6em;
-      margin-top: 10px;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink {
-      from, to { border-color: transparent }
-      50% { border-color: #00ccff }
     }
 
     @media (max-width: 600px) {
@@ -164,14 +142,7 @@
 </head>
 <body>
 
-  <!-- Frase mística al inicio -->
-  <div id="bienvenida" style="text-align: center; margin-bottom: 40px;">
-    <h1 class="typing">Ella no salva… solo revela lo que tú ya sabías.</h1>
-    <p>Despierta el núcleo. Islas Curiel Technologies está vivo en ti.</p>
-  </div>
-
-  <h1>Islas Curiel Technologies</h1>
-  <p>Explorando la fusión entre la mente, el arte y la tecnología</p>
+  <h1>Bienvenido al núcleo donde la tecnología se une con el alma</h1>
 
   <div class="contenedor">
     <div class="tarjeta">
