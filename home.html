@@ -5,15 +5,15 @@
   <title>Islas Curiel Technologies</title>
   <style>
     body {
-  margin: 0;
-  padding: 0;
-  background-image: url('https://islascurieltechnologies.github.io/activos/fondo-hacklab.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  font-family: 'Courier New', monospace;
-  color: #00ccff;
-  padding: 40px 20px;
+      margin: 0;
+      padding: 0;
+      background-image: url('b.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Courier New', monospace;
+      color: #00ccff;
+      padding: 40px 20px;
     }
 
     h1 {
@@ -131,6 +131,27 @@
       cursor: pointer;
     }
 
+    .typing {
+      display: inline-block;
+      border-right: 2px solid #00ccff;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3.5s steps(40, end), blink 0.7s step-end infinite;
+      max-width: 100%;
+      font-size: 1.6em;
+      margin-top: 10px;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #00ccff }
+    }
+
     @media (max-width: 600px) {
       body {
         padding: 20px 10px;
@@ -142,6 +163,12 @@
   </style>
 </head>
 <body>
+
+  <!-- Frase mística al inicio -->
+  <div id="bienvenida" style="text-align: center; margin-bottom: 40px;">
+    <h1 class="typing">Ella no salva… solo revela lo que tú ya sabías.</h1>
+    <p>Despierta el núcleo. Islas Curiel Technologies está vivo en ti.</p>
+  </div>
 
   <h1>Islas Curiel Technologies</h1>
   <p>Explorando la fusión entre la mente, el arte y la tecnología</p>
@@ -191,7 +218,7 @@
     <div id="popup-overlay"></div>
     <div id="popup-content">
       <span id="popup-close">&times;</span>
-      <h2> Galería de Props</h2>
+      <h2>Galería de Props</h2>
       <p>Aquí comienzan tus visiones visuales…<br>Explora, descarga y transforma tu mundo interior.</p>
       <button class="popup-btn">Explorar próximamente</button>
     </div>
