@@ -20,6 +20,12 @@
       font-size: 2.8em;
       margin-bottom: 30px;
     }
+    p {
+      text-align: center;
+      color: #00ccff;
+      font-size: 20px;
+      margin-top: 20px;
+    }
     .contenedor {
       display: flex;
       flex-wrap: wrap;
@@ -58,6 +64,11 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 1em;
+    }
+    .tarjeta button:disabled {
+      background-color: #444;
+      color: #999;
+      cursor: not-allowed;
     }
     #popup-galeria {
       position: fixed;
@@ -103,14 +114,21 @@
       margin-top: 20px;
       cursor: pointer;
     }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+      .tarjeta {
+        width: 95%;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <h1> Islas Curiel Technologies</h1>
-  <p style="text-align: center; color: #00ccff; font-size: 20px; margin-top: 20px;">
-    Explorando la fusión entre la mente, el arte y la tecnología 
-  </p>
+  <h1>Islas Curiel Technologies</h1>
+  <p>Explorando la fusión entre la mente, el arte y la tecnología</p>
 
   <div class="contenedor">
     <div class="tarjeta">
@@ -157,7 +175,7 @@
     <div id="popup-overlay"></div>
     <div id="popup-content">
       <span id="popup-close">&times;</span>
-      <h2>🌌 Galería de Props</h2>
+      <h2> Galería de Props</h2>
       <p>Aquí comienzan tus visiones visuales…<br>Explora, descarga y transforma tu mundo interior.</p>
       <button class="popup-btn">Explorar próximamente</button>
     </div>
@@ -177,7 +195,7 @@
     });
 
     window.addEventListener("click", (e) => {
-      if (e.target === popup) {
+      if (e.target === document.getElementById("popup-overlay")) {
         popup.style.display = "none";
       }
     });
@@ -185,9 +203,3 @@
 
 </body>
 </html>
-"""
-
-# Guardar como archivo HTML
-output_path = Path("/mnt/data/inicio_home_actualizado.html")
-output_path.write_text(html_content, encoding='utf-8')
-output_path
