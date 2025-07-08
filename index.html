@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Islas Curiel Technologies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -10,26 +11,35 @@
       font-family: 'Courier New', monospace;
       overflow: hidden;
     }
+
     #video-container {
       position: absolute;
       width: 100%;
       height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
     }
+
     video {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+
     #texto {
       position: absolute;
-      bottom: 10%;
+      bottom: 15%;
       width: 100%;
       text-align: center;
-      font-size: 1.5em;
+      font-size: 1.4em;
       color: #00ccff;
       opacity: 0;
       transition: opacity 1s ease;
+      z-index: 10;
+      padding: 0 20px;
     }
+
     #boton-entrar {
       position: absolute;
       bottom: 5%;
@@ -43,7 +53,9 @@
       font-size: 1.2em;
       cursor: pointer;
       display: none;
+      z-index: 10;
     }
+
     #startButton {
       position: absolute;
       top: 0;
@@ -59,49 +71,53 @@
 </head>
 <body>
 
-<!-- Botón invisible para iniciar -->
-<button id="startButton"></button>
+  <!-- Botón invisible para iniciar -->
+  <button id="startButton"></button>
 
-<div id="video-container">
-  <video id="introVideo" preload="auto">
-    <source src="intro-ayala-nucleo-final.mp4" type="video/mp4">
-    Tu navegador no soporta este formato.
-  </video>
-</div>
+  <!-- Video de introducción -->
+  <div id="video-container">
+    <video id="introVideo" preload="auto" playsinline>
+      <source src="intro-ayala-nucleo-final.mp4" type="video/mp4">
+      Tu navegador no soporta este formato.
+    </video>
+  </div>
 
-<div id="texto"></div>
-<button id="boton-entrar" onclick="location.href='home.html'">Entrar</button>
+  <!-- Texto animado -->
+  <div id="texto"></div>
 
-<script>
-  const texto = "Bienvenido, a Islas Curiel Technologies. Donde la tecnología se encuentra con el alma.";
-  const textoDiv = document.getElementById("texto");
-  const boton = document.getElementById("boton-entrar");
-  const video = document.getElementById("introVideo");
-  const startBtn = document.getElementById("startButton");
+  <!-- Botón de entrada -->
+  <button id="boton-entrar" onclick="location.href='home.html'">Entrar</button>
 
-  startBtn.addEventListener("click", () => {
-    startBtn.style.display = "none";
-    video.play();
+  <script>
+    const texto = "Bienvenido a Islas Curiel Technologies. Donde la tecnología se encuentra con el alma.";
+    const textoDiv = document.getElementById("texto");
+    const boton = document.getElementById("boton-entrar");
+    const video = document.getElementById("introVideo");
+    const startBtn = document.getElementById("startButton");
 
-    setTimeout(() => {
-      textoDiv.style.opacity = 1;
-      let i = 0;
-      const speed = 50;
-      const escribir = () => {
-        if (i < texto.length) {
-          textoDiv.innerHTML += texto.charAt(i);
-          i++;
-          setTimeout(escribir, speed);
-        }
-      };
-      escribir();
-    }, 2000);
-  });
+    startBtn.addEventListener("click", () => {
+      startBtn.style.display = "none";
+      video.play();
 
-  video.onended = () => {
-    boton.style.display = 'block';
-  };
-</script>
+      setTimeout(() => {
+        textoDiv.style.opacity = 1;
+        let i = 0;
+        const speed = 50;
+        const escribir = () => {
+          if (i < texto.length) {
+            textoDiv.innerHTML += texto.charAt(i);
+            i++;
+            setTimeout(escribir, speed);
+          }
+        };
+        escribir();
+      }, 2000);
+    });
+
+    video.onended = () => {
+      boton.style.display = 'block';
+    };
+  </script>
 
 </body>
 </html>
