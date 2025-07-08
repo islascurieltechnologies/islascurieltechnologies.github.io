@@ -1,63 +1,24 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-image: url('https://islascurieltechnologies.github.io/activos/fondo-hacklab.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio – Islas Curiel Technologies</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <div id="bienvenida">
+    <h1 class="typing">Ella no salva… solo revela lo que tú ya sabías.</h1>
+    <p>Bienvenido al núcleo de acceso de Islas Curiel Technologies</p>
+    <button onclick="window.location.href='indice.html'">Entrar</button>
+  </div>
 
-#bienvenida, #contenido {
-  text-align: center;
-}
-
-h1 {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
-}
-
-p {
-  font-size: 0.9rem;
-  margin-bottom: 20px;
-}
-
-button {
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.typing {
-  display: inline-block;
-  border-right: 2px solid white;
-  white-space: nowrap;
-  overflow: hidden;
-  animation: typing 4s steps(30, end), blink 0.7s step-end infinite;
-  max-width: 100%;
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes blink {
-  from, to { border-color: transparent }
-  50% { border-color: white }
-}
+  <script>
+    // Opcional: sonido o efecto al dar clic
+    const boton = document.querySelector('button');
+    boton.addEventListener('click', () => {
+      const audio = new Audio('entrada.mp3');
+      audio.play();
+    });
+  </script>
+</body>
+</html>
