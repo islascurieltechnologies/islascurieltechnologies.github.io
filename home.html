@@ -1,134 +1,150 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Islas Curiel Technologies</title>
   <style>
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
-      background-image: url('b.jpg');
-      background-size: cover;
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      font-family: 'Courier New', monospace;
-      color: white;
-      padding: 40px 20px;
-    }
+    }body {
+  background-image: url('b.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  font-family: 'Courier New', monospace;
+  color: white;
+  padding: 40px 20px 100px; /* espacio para el footer */
+  box-sizing: border-box;
+}
 
-    .contenedor {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
+.contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
 
-    .tarjeta {
-      background-color: rgba(0, 0, 0, 0.6);
-      border: 1px solid white;
-      border-radius: 12px;
-      padding: 20px;
-      width: 280px;
-      min-height: 160px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
+.tarjeta {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid white;
+  border-radius: 12px;
+  padding: 20px;
+  width: 280px;
+  min-height: 160px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
 
-    .tarjeta:hover {
-      transform: scale(1.05);
-      background-color: rgba(0, 0, 0, 0.8);
-    }
+.tarjeta:hover {
+  transform: scale(1.05);
+  background-color: rgba(0, 0, 0, 0.8);
+}
 
-    .tarjeta h2 {
-      margin-top: 0;
-      font-size: 1.5em;
-      color: #ffffff;
-    }
+.tarjeta h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #ffffff;
+}
 
-    .tarjeta p {
-      font-size: 1em;
-      color: #cccccc;
-    }
+.tarjeta p {
+  font-size: 1em;
+  color: #cccccc;
+}
 
-    .tarjeta button {
-      margin-top: 15px;
-      background-color: white;
-      color: black;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1em;
-    }
+.tarjeta button {
+  margin-top: 15px;
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+}
 
-    .tarjeta button:disabled {
-      background-color: #444;
-      color: #999;
-      cursor: not-allowed;
-    }
+.tarjeta button:disabled {
+  background-color: #444;
+  color: #999;
+  cursor: not-allowed;
+}
 
-    #popup-galeria {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 999;
-      font-family: 'Courier New', monospace;
-      display: none;
-    }
+#popup-galeria {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 999;
+  font-family: 'Courier New', monospace;
+  display: none;
+}
 
-    #popup-overlay {
-      background-color: rgba(0,0,0,0.8);
-      width: 100%; height: 100%;
-      position: absolute;
-      top: 0; left: 0;
-    }
+#popup-overlay {
+  background-color: rgba(0,0,0,0.8);
+  width: 100%; height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+}
 
-    #popup-content {
-      background-color: #000;
-      color: white;
-      border: 2px solid white;
-      padding: 30px;
-      width: 90%;
-      max-width: 400px;
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 0 30px #ffffff55;
-    }
+#popup-content {
+  background-color: #000;
+  color: white;
+  border: 2px solid white;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 30px #ffffff55;
+}
 
-    #popup-close {
-      position: absolute;
-      top: 10px; right: 20px;
-      font-size: 24px;
-      cursor: pointer;
-      color: white;
-    }
+#popup-close {
+  position: absolute;
+  top: 10px; right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
 
-    .popup-btn {
-      background-color: white;
-      color: black;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 12px;
-      margin-top: 20px;
-      cursor: pointer;
-    }
+.popup-btn {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  cursor: pointer;
+}
 
-    @media (max-width: 600px) {
-      body {
-        padding: 20px 10px;
-      }
-      .tarjeta {
-        width: 95%;
-      }
-    }
+footer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-family: 'Courier New', monospace;
+  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+  z-index: 999;
+  max-width: 90%;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 20px 10px 100px;
+  }
+  .tarjeta {
+    width: 95%;
+  }
+}
+
   </style>
 </head>
-<body>
-
-  <div class="contenedor">
+<body>  <div class="contenedor">
     <div class="tarjeta">
       <h2>Galería de Props</h2>
       <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>
@@ -159,39 +175,19 @@
       <p>Entérate de lanzamientos, revelaciones y eventos.</p>
       <button disabled>Próximamente</button>
     </div>
-  </div>
-
-  <!-- 🔽 Bloque inferior con frase -->
-  <div style="
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 15px 25px;
-    border-radius: 12px;
-    font-family: 'Courier New', monospace;
-    box-shadow: 0 0 10px rgba(0,0,0,0.8);
-    z-index: 999;
-    max-width: 90%;
-  ">
+  </div>  <footer>
     <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
     <p style="margin: 5px 0 0; font-size: 1em;">
       Bienvenido al núcleo donde la tecnología se une con el alma
     </p>
-  </div>
+  </footer><audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
 
-  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
   <script>
     window.addEventListener("click", () => {
       const sonido = document.getElementById("intro-sound");
       if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
     }, { once: true });
-  </script>
-
-  <div id="popup-galeria">
+  </script>  <div id="popup-galeria">
     <div id="popup-overlay"></div>
     <div id="popup-content">
       <span id="popup-close">&times;</span>
@@ -199,9 +195,7 @@
       <p>Aquí comienzan tus visiones visuales…<br>Explora, descarga y transforma tu mundo interior.</p>
       <button class="popup-btn">Explorar próximamente</button>
     </div>
-  </div>
-
-  <script>
+  </div>  <script>
     const abrirPopup = document.getElementById("abrirPopup");
     const cerrarPopup = document.getElementById("popup-close");
     const popup = document.getElementById("popup-galeria");
@@ -219,7 +213,5 @@
         popup.style.display = "none";
       }
     });
-  </script>
-
-</body>
+  </script></body>
 </html>
