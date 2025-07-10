@@ -1,183 +1,191 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Islas Curiel Technologies</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background-color: black;
-      font-family: 'Courier New', monospace;
-      color: white;
-    }
-    body {
-      background-image: url('b.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 40px 20px 100px;
-      box-sizing: border-box;
-    }
-    .contenedor {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .tarjeta {
-      background-color: rgba(0, 0, 0, 0.6);
-      border: 1px solid white;
-      border-radius: 12px;
-      padding: 20px;
-      width: 300px;
-      min-height: 200px;
-      text-align: center;
-    }
-    .tarjeta input[type="text"] {
-      width: 90%;
-      padding: 8px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: none;
-    }
-    .tarjeta button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 1em;
-      cursor: pointer;
-    }
-    #galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 15px;
-      margin-top: 30px;
-    }
-    .img-container {
-      position: relative;
-    }
-    .img-container img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .img-container button {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      background-color: rgba(255, 0, 0, 0.7);
-      border: none;
-      border-radius: 5px;
-      padding: 5px 10px;
-      cursor: pointer;
-      color: white;
-    }
-    footer {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(0,0,0,0.6);
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-size: 1em;
-      box-shadow: 0 0 10px rgba(0,0,0,0.8);
-    }
-  </style>
-</head>
-<body>
+<!DOCTYPE html>  <html lang="es">  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Islas Curiel Technologies</title>  
+  <style>  
+    html, body {  
+      height: 100%;  
+      margin: 0;  
+      background-color: black;  
+      font-family: 'Courier New', monospace;  
+      color: white;  
+    }  
+    body {  
+      background-image: url('b.jpg');  
+      background-size: cover;  
+      background-position: center;  
+      background-repeat: no-repeat;  
+      padding: 40px 20px 100px;  
+      box-sizing: border-box;  
+    }  
+    .contenedor {  
+      display: flex;  
+      flex-wrap: wrap;  
+      justify-content: center;  
+      gap: 20px;  
+    }  
+    .tarjeta {  
+      background-color: rgba(0, 0, 0, 0.6);  
+      border: 1px solid white;  
+      border-radius: 12px;  
+      padding: 20px;  
+      width: 300px;  
+      min-height: 200px;  
+      text-align: center;  
+    }  
+    .tarjeta input[type="text"] {  
+      width: 90%;  
+      padding: 8px;  
+      margin-top: 10px;  
+      border-radius: 8px;  
+      border: none;  
+    }  
+    .tarjeta button {  
+      margin-top: 15px;  
+      padding: 10px 20px;  
+      border-radius: 8px;  
+      font-size: 1em;  
+      cursor: pointer;  
+    }  
+    #galeria {  
+      display: grid;  
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));  
+      gap: 15px;  
+      margin-top: 30px;  
+    }  
+    .img-container {  
+      position: relative;  
+    }  
+    .img-container img {  
+      width: 100%;  
+      border-radius: 10px;  
+    }  
+    .img-container button {  
+      position: absolute;  
+      top: 5px;  
+      right: 5px;  
+      background-color: rgba(255, 0, 0, 0.7);  
+      border: none;  
+      border-radius: 5px;  
+      padding: 5px 10px;  
+      cursor: pointer;  
+      color: white;  
+    }  
+    footer {  
+      position: fixed;  
+      bottom: 20px;  
+      left: 50%;  
+      transform: translateX(-50%);  
+      background-color: rgba(0,0,0,0.6);  
+      padding: 10px 20px;  
+      border-radius: 10px;  
+      font-size: 1em;  
+      box-shadow: 0 0 10px rgba(0,0,0,0.8);  
+    }  
+  </style>  
+</head>  
+<body>    <div class="contenedor">  
+    <div class="tarjeta">  
+      <h2>IA de Imágenes</h2>  
+      <p>Escribe lo que imaginas… y dale vida.</p>  
+      <input type="text" id="prompt" placeholder="Ej. Una kunoichi entre sombras">  
+      <button onclick="generarImagen()">Crear imagen</button>  
+      <button onclick="descargarTodas()">Descargar todas</button>  
+    </div>  
+  </div>    <div id="galeria"></div>    <footer>  
+    Islas Curiel Technologies — Tu visión, nuestra creación  
+  </footer>    <script>  
+    async function generarImagen() {  
+      const prompt = document.getElementById('prompt').value;  
+      if (!prompt.trim()) return alert("Escribe algo primero ");  
+  
+      const respuesta = await fetch("https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image", {  
+        method: "POST",  
+        headers: {  
+          "Content-Type": "application/json",  
+          "Accept": "application/json",  
+          "Authorization": "Bearer sk-OCDqEkSg2JGqCQoBy7IY3zk2i52nRgUzGzV6rl1D6Fi7HXBW"  
+        },  
+        body: JSON.stringify({  
+          text_prompts: [{ text: prompt }],  
+          cfg_scale: 7,  
+          height: 512,  
+          width: 512,  
+          steps: 30,  
+          samples: 1  
+        })  
+      });  
+  
+      const data = await respuesta.json();  
+      if (!data.artifacts || !data.artifacts[0]) return alert("No se pudo generar ");  
+  
+      const imgBase64 = data.artifacts[0].base64;  
+      const imgSrc = `data:image/png;base64,${imgBase64}`;  
+      agregarImagen(imgSrc);  
+    }  
+  
+    function agregarImagen(src) {  
+      const galeria = document.getElementById("galeria");  
+  
+      const contenedor = document.createElement("div");  
+      contenedor.className = "img-container";  
+  
+      const img = document.createElement("img");  
+      img.src = src;  
+  
+      const eliminar = document.createElement("button");  
+      eliminar.innerText = "❌";  
+      eliminar.onclick = () => contenedor.remove();  
+  
+      contenedor.appendChild(img);  
+      contenedor.appendChild(eliminar);  
+      galeria.appendChild(contenedor);  
+    }  
+  
+    function descargarTodas() {  
+      const imagenes = document.querySelectorAll("#galeria img");  
+      imagenes.forEach((img, index) => {  
+        const link = document.createElement("a");  
+        link.href = img.src;  
+        link.download = `imagen_${index + 1}.png`;  
+        document.body.appendChild(link);  
+        link.click();  
+        document.body.removeChild(link);  
+      });  
+    }  
+  </script>  // Guardar imagen en localStorage
+function guardarEnMemoria() {
+const imagenes = Array.from(document.querySelectorAll("#galeria img")).map(img => img.src);
+localStorage.setItem("miGaleriaIA", JSON.stringify(imagenes));
+}
 
-  <div class="contenedor">
-    <div class="tarjeta">
-      <h2>IA de Imágenes</h2>
-      <p>Escribe lo que imaginas… y dale vida.</p>
-      <input type="text" id="prompt" placeholder="Ej. Una kunoichi entre sombras">
-      <button onclick="generarImagen()">Crear imagen</button>
-      <button onclick="descargarTodas()">Descargar todas</button>
-    </div>
-  </div>
+// Cargar imágenes al iniciar
+window.onload = () => {
+const guardadas = JSON.parse(localStorage.getItem("miGaleriaIA")) || [];
+guardadas.forEach(src => agregarImagen(src));
+};
 
-  <div id="galeria"></div>
+// Actualiza guardar cuando se agrega o borra
+function agregarImagen(src) {
+const galeria = document.getElementById("galeria");
+const contenedor = document.createElement("div");
+contenedor.className = "img-container";
 
-  <footer>
-    Islas Curiel Technologies — Tu visión, nuestra creación
-  </footer>
+const img = document.createElement("img");
+img.src = src;
 
-  <script>
-    async function generarImagen() {
-      const prompt = document.getElementById('prompt').value;
-      if (!prompt.trim()) return alert("Escribe algo primero ");
+const eliminar = document.createElement("button");
+eliminar.innerText = "❌";
+eliminar.onclick = () => {
+contenedor.remove();
+guardarEnMemoria(); // actualiza memoria
+};
 
-      const respuesta = await fetch("https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": "Bearer sk-OCDqEkSg2JGqCQoBy7IY3zk2i52nRgUzGzV6rl1D6Fi7HXBW"
-        },
-        body: JSON.stringify({
-          text_prompts: [{ text: prompt }],
-          cfg_scale: 7,
-          height: 512,
-          width: 512,
-          steps: 30,
-          samples: 1
-        })
-      });
+contenedor.appendChild(img);
+contenedor.appendChild(eliminar);
+galeria.appendChild(contenedor);
+guardarEnMemoria(); // actualiza memoria
+}
 
-      const data = await respuesta.json();
-      if (!data.artifacts || !data.artifacts[0]) return alert("No se pudo generar ");
-
-      const imgBase64 = data.artifacts[0].base64;
-      const imgSrc = `data:image/png;base64,${imgBase64}`;
-      agregarImagen(imgSrc);
-    }
-
-    function agregarImagen(src) {
-      const galeria = document.getElementById("galeria");
-      const contenedor = document.createElement("div");
-      contenedor.className = "img-container";
-
-      const img = document.createElement("img");
-      img.src = src;
-
-      const eliminar = document.createElement("button");
-      eliminar.innerText = "❌";
-      eliminar.onclick = () => {
-        contenedor.remove();
-        guardarEnMemoria(); // actualiza memoria
-      };
-
-      contenedor.appendChild(img);
-      contenedor.appendChild(eliminar);
-      galeria.appendChild(contenedor);
-      guardarEnMemoria(); // actualiza memoria
-    }
-
-    function descargarTodas() {
-      const imagenes = document.querySelectorAll("#galeria img");
-      imagenes.forEach((img, index) => {
-        const link = document.createElement("a");
-        link.href = img.src;
-        link.download = `imagen_${index + 1}.png`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-    }
-
-    // Guardar en localStorage
-    function guardarEnMemoria() {
-      const imagenes = Array.from(document.querySelectorAll("#galeria img")).map(img => img.src);
-      localStorage.setItem("miGaleriaIA", JSON.stringify(imagenes));
-    }
-
-    // Cargar imágenes al iniciar
-    window.onload = () => {
-      const guardadas = JSON.parse(localStorage.getItem("miGaleriaIA")) || [];
-      guardadas.forEach(src => agregarImagen(src));
-    };
-  </script>
-
-</body>
+</body>  
 </html>
