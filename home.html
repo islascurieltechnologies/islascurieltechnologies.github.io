@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Islas Curiel Technologies</title>
@@ -123,51 +124,56 @@
     window.addEventListener("click", () => {
       const sonido = document.getElementById("intro-sound");
       if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
-    }, { once: true });function abrirGaleriaPublica() {
-  window.location.href = 'galeria.html';
-}
+    }, { once: true });
 
-function abrirGaleriaPersonal() {
-  window.location.href = 'personal.html';
-}
+    function abrirGaleriaPublica() {
+      window.location.href = 'galeria.html';
+    }
 
-async function generarImagen() {
-  const prompt = document.getElementById('prompt').value;
-  const preview = document.getElementById('preview');
-  if (!prompt.trim()) {
-    preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
-    return;
-  }
-  preview.innerHTML = "<p>Generando imagen... 🌌</p>";
-  const respuesta = await fetch("https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": "Bearer sk-OCDqEkSg2JGqCQoBy7IY3zk2i52nRgUzGzV6rl1D6Fi7HXBW"
-    },
-    body: JSON.stringify({
-      text_prompts: [{ text: prompt }],
-      cfg_scale: 7,
-      height: 512,
-      width: 512,
-      steps: 30,
-      samples: 1
-    })
-  });
-  const data = await respuesta.json();
-  const imgBase64 = data.artifacts[0].base64;
-  const imgSrc = `data:image/png;base64,${imgBase64}`;
-  preview.innerHTML = `<img src="${imgSrc}" id="generated-image"> <div class='img-actions'> <a download="imagen_ia.png" href="${imgSrc}"><button>Descargar</button></a> <button onclick="guardarPersonalmente('${imgSrc}')">Guardar en espacio personal</button> </div>`;
-}
+    function abrirGaleriaPersonal() {
+      window.location.href = 'personal.html';
+    }
 
-function guardarPersonalmente(url) {
-  let imagenes = JSON.parse(localStorage.getItem('misImagenes') || '[]');
-  imagenes.push(url);
-  localStorage.setItem('misImagenes', JSON.stringify(imagenes));
-  alert('Imagen guardada en tu espacio personal 💾');
-}
+    async function generarImagen() {
+      const prompt = document.getElementById('prompt').value;
+      const preview = document.getElementById('preview');
+      if (!prompt.trim()) {
+        preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
+        return;
+      }
+      preview.innerHTML = "<p>Generando imagen... 🌌</p>";
+      const respuesta = await fetch("https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer sk-OCDqEkSg2JGqCQoBy7IY3zk2i52nRgUzGzV6rl1D6Fi7HXBW"
+        },
+        body: JSON.stringify({
+          text_prompts: [{ text: prompt }],
+          cfg_scale: 7,
+          height: 512,
+          width: 512,
+          steps: 30,
+          samples: 1
+        })
+      });
+      const data = await respuesta.json();
+      const imgBase64 = data.artifacts[0].base64;
+      const imgSrc = `data:image/png;base64,${imgBase64}`;
+      preview.innerHTML = `<img src="${imgSrc}" id="generated-image">
+        <div class='img-actions'>
+          <a download="imagen_ia.png" href="${imgSrc}"><button>Descargar</button></a>
+          <button onclick="guardarPersonalmente('${imgSrc}')">Guardar en espacio personal</button>
+        </div>`;
+    }
 
+    function guardarPersonalmente(url) {
+      let imagenes = JSON.parse(localStorage.getItem('misImagenes') || '[]');
+      imagenes.push(url);
+      localStorage.setItem('misImagenes', JSON.stringify(imagenes));
+      alert('Imagen guardada en tu espacio personal 💾');
+    }
   </script>
 </body>
 </html>
