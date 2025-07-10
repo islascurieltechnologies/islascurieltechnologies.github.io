@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Islas Curiel Technologies</title>
@@ -64,14 +65,6 @@
       cursor: pointer;
       font-size: 1em;
     }
-    .tarjeta button:disabled {
-      background-color: #444;
-      color: #999;
-      cursor: not-allowed;
-    }
-    #preview {
-      margin-top: 15px;
-    }
     #preview img {
       max-width: 100%;
       border-radius: 12px;
@@ -82,10 +75,6 @@
       display: flex;
       gap: 10px;
       justify-content: center;
-    }
-    .img-actions button {
-      padding: 8px 14px;
-      font-size: 0.9em;
     }
     footer {
       position: fixed;
@@ -101,14 +90,6 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.8);
       z-index: 999;
       max-width: 90%;
-    }
-    @media (max-width: 600px) {
-      body {
-        padding: 20px 10px 100px;
-      }
-      .tarjeta {
-        width: 95%;
-      }
     }
   </style>
 </head>
@@ -128,61 +109,78 @@
     </div>
     <div class="tarjeta">
       <h2>Espacio Personal</h2>
-      <p>Accede a tus imágenes privadas y gestiona tu galía personal.</p>
+      <p>Accede a tus imágenes privadas y gestiona tu galería personal.</p>
       <a href="/mi-espacio.html"><button>Mis Imágenes</button></a>
     </div>
   </div>
+
   <footer>
     <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
     <p style="margin: 5px 0 0; font-size: 1em;">Bienvenido al núcleo donde la tecnología se une con el alma</p>
   </footer>
+
   <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
+
   <script>
     window.addEventListener("click", () => {
       const sonido = document.getElementById("intro-sound");
       if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
-    }, { once: true });async function generarImagen() {
-  const prompt = document.getElementById('prompt').value;
-  const preview = document.getElementById('preview');
-  if (!prompt.trim()) {
-    preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
-    return;
-  }
-  preview.innerHTML = "<p>Generando imagen... 🌌</p>";
+    }, { once: true });
 
-  const respuesta = await fetch("https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": "Bearer sk-OCDqEkSg2JGqCQoBy7IY3zk2i52nRgUzGzV6rl1D6Fi7HXBW"
-    },
-    body: JSON.stringify({
-      text_prompts: [{ text: prompt }],
-      cfg_scale: 7,
-      height: 512,
-      width: 512,
-      steps: 30,
-      samples: 1
-    })
-  });
+    async function generarImagen() {
+      const prompt = document.getElementById('prompt').value;
+      const preview = document.getElementById('preview');
+      if (!prompt.trim()) {
+        preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
+        return;
+      }
 
-  const data = await respuesta.json();
-  if (!data.artifacts || !data.artifacts[0]) {
-    preview.innerHTML = "<p style='color: red;'>No se pudo generar la imagen. Inténtalo de nuevo.</p>";
-    return;
-  }
+      preview.innerHTML = "<p>Generando imagen... 🌌</p>";
 
-  const imgBase64 = data.artifacts[0].base64;
-  const imgSrc = `data:image/png;base64,${imgBase64}`;
-  preview.innerHTML = `<img src="${imgSrc}" id="generated-image">
-  <div class='img-actions'>
-    <a download="imagen_ia.png" href="${imgSrc}"><button>Descargar</button></a>
-    <button onclick="guardarImagen('${imgSrc}')">Subir a mi espacio</button>
-  </div>`;
-}
+      try {
+        const respuesta = await fetch("https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer sk-OCDqEkSg2JGqCQoBy7IY3zk2i52nRgUzGzV6rl1D6Fi7HXBW"
+          },
+          body: JSON.stringify({
+            text_prompts: [{ text: prompt }],
+            cfg_scale: 7,
+            height: 512,
+            width: 512,
+            steps: 30,
+            samples: 1
+          })
+        });
 
-function guardarImagen(imgSrc) {
-  alert("(Función pendiente
+        const data = await respuesta.json();
+        if (!data.artifacts || !data.artifacts[0]) {
+          preview.innerHTML = "<p style='color: red;'>No se pudo generar la imagen. Inténtalo de nuevo.</p>";
+          return;
+        }
 
-        
+        const imgBase64 = data.artifacts[0].base64;
+        const imgSrc = `data:image/png;base64,${imgBase64}`;
+
+        preview.innerHTML = `<img src="${imgSrc}" id="generated-image">
+        <div class='img-actions'>
+          <a download="imagen_ia.png" href="${imgSrc}"><button>Descargar</button></a>
+          <button onclick="guardarImagen('${imgSrc}')">Subir a mi espacio</button>
+        </div>`;
+      } catch (e) {
+        preview.innerHTML = "<p style='color: red;'>Error al generar la imagen.</p>";
+        console.error(e);
+      }
+    }
+
+    function guardarImagen(imgSrc) {
+      let galeria = JSON.parse(localStorage.getItem("galeriaPersonal") || "[]");
+      galeria.push(imgSrc);
+      localStorage.setItem("galeriaPersonal", JSON.stringify(galeria));
+      alert("Imagen guardada en tu espacio personal 💾");
+    }
+  </script>
+</body>
+</html>
