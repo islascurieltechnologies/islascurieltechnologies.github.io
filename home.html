@@ -1,171 +1,173 @@
-<!DOCTYPE html><html lang="es">  <head>  
-  <meta charset="UTF-8">  
-  <title>Islas Curiel Technologies</title>  
-  <style>  
-    html, body {  
-      height: 100%;  
-      margin: 0;  
-    }  
-    body {  
-      background-image: url('b.jpg');  
-      background-size: cover;  
-      background-position: center bottom;  
-      background-repeat: no-repeat;  
-      font-family: 'Courier New', monospace;  
-      color: white;  
-      padding: 40px 20px 100px;  
-      box-sizing: border-box;  
-    }  
-    .contenedor {  
-      display: flex;  
-      flex-wrap: wrap;  
-      justify-content: center;  
-      gap: 20px;  
-    }  
-    .tarjeta {  
-      background-color: rgba(0, 0, 0, 0.6);  
-      border: 1px solid white;  
-      border-radius: 12px;  
-      padding: 20px;  
-      width: 280px;  
-      min-height: 200px;  
-      text-align: center;  
-      transition: transform 0.3s ease;  
-    }  
-    .tarjeta:hover {  
-      transform: scale(1.05);  
-      background-color: rgba(0, 0, 0, 0.8);  
-    }  
-    .tarjeta h2 {  
-      margin-top: 0;  
-      font-size: 1.5em;  
-      color: #ffffff;  
-    }  
-    .tarjeta p {  
-      font-size: 1em;  
-      color: #cccccc;  
-    }  
-    .tarjeta input[type="text"] {  
-      width: 90%;  
-      padding: 8px;  
-      margin-top: 10px;  
-      border-radius: 8px;  
-      border: none;  
-      font-size: 1em;  
-    }  
-    .tarjeta button {  
-      margin-top: 15px;  
-      background-color: white;  
-      color: black;  
-      border: none;  
-      padding: 10px 20px;  
-      border-radius: 8px;  
-      cursor: pointer;  
-      font-size: 1em;  
-    }  
-    .img-actions {  
-      margin-top: 10px;  
-      display: flex;  
-      gap: 10px;  
-      justify-content: center;  
-    }  
-    #preview img {  
-      max-width: 100%;  
-      border-radius: 12px;  
-      margin-top: 10px;  
-    }  
-    footer {  
-      position: fixed;  
-      bottom: 20px;  
-      left: 50%;  
-      transform: translateX(-50%);  
-      text-align: center;  
-      color: white;  
-      background-color: rgba(0, 0, 0, 0.6);  
-      padding: 15px 25px;  
-      border-radius: 12px;  
-      font-family: 'Courier New', monospace;  
-      box-shadow: 0 0 10px rgba(0,0,0,0.8);  
-      z-index: 999;  
-      max-width: 90%;  
-    }  
-  </style>  
-</head>  
-<body>  
-  <div class="contenedor">  
-    <div class="tarjeta">  
-      <h2>Galería de Prompts</h2>  
-      <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>  
-      <button onclick="abrirGaleriaPublica()">Explorar visiones</button>  
-    </div>  
-    <div class="tarjeta">  
-      <h2>IA de Imágenes</h2>  
-      <p>Escribe lo que imaginas… y dale vida.</p>  
-      <input type="text" id="prompt" placeholder="Ej. Una kunoichi entre sombras">  
-      <button onclick="generarImagen()">Crear imagen</button>  
-      <div id="preview"></div>  
-    </div>  
-    <div class="tarjeta">  
-      <h2>Espacio Personal</h2>  
-      <p>Guarda tus avances, recursos y proyectos únicos.</p>  
-      <button onclick="abrirGaleriaPersonal()">Mis Imágenes</button>  
-    </div>  
-  </div>  
-  <footer>  
-    <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>  
-    <p style="margin: 5px 0 0; font-size: 1em;">  
-      Bienvenido al núcleo donde la tecnología se une con el alma  
-    </p>  
-  </footer>  
-  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>  
-  <script>  
-    window.addEventListener("click", () => {  
-      const sonido = document.getElementById("intro-sound");  
-      if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));  
-    }, { once: true });function abrirGaleriaPublica() {  
-  window.location.href = 'galeria.html';  
-}  function abrirGaleriaPersonal() {
-window.location.href = 'personal.html';
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Islas Curiel Technologies</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      background-image: url('b.jpg');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      font-family: 'Courier New', monospace;
+      color: white;
+      padding: 40px 20px 100px;
+      box-sizing: border-box;
+    }
+    .contenedor {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .tarjeta {
+      background-color: rgba(0, 0, 0, 0.6);
+      border: 1px solid white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 280px;
+      min-height: 200px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .tarjeta:hover {
+      transform: scale(1.05);
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .tarjeta h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+      color: #ffffff;
+    }
+    .tarjeta p {
+      font-size: 1em;
+      color: #cccccc;
+    }
+    .tarjeta input[type="text"] {
+      width: 90%;
+      padding: 8px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+    }
+    .tarjeta button {
+      margin-top: 15px;
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .img-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    #preview img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+    footer {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-family: 'Courier New', monospace;
+      box-shadow: 0 0 10px rgba(0,0,0,0.8);
+      z-index: 999;
+      max-width: 90%;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor">
+    <div class="tarjeta">
+      <h2>Galería de Prompts</h2>
+      <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>
+      <button onclick="abrirGaleriaPublica()">Explorar visiones</button>
+    </div>
+    <div class="tarjeta">
+      <h2>IA de Imágenes</h2>
+      <p>Escribe lo que imaginas… y dale vida.</p>
+      <input type="text" id="prompt" placeholder="Ej. Una kunoichi entre sombras">
+      <button onclick="generarImagen()">Crear imagen</button>
+      <div id="preview"></div>
+    </div>
+    <div class="tarjeta">
+      <h2>Espacio Personal</h2>
+      <p>Guarda tus avances, recursos y proyectos únicos.</p>
+      <button onclick="abrirGaleriaPersonal()">Mis Imágenes</button>
+    </div>
+  </div>
+  <footer>
+    <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
+    <p style="margin: 5px 0 0; font-size: 1em;">
+      Bienvenido al núcleo donde la tecnología se une con el alma
+    </p>
+  </footer>
+  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
+  <script>
+    window.addEventListener("click", () => {
+      const sonido = document.getElementById("intro-sound");
+      if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
+    }, { once: true });function abrirGaleriaPublica() {
+  window.location.href = 'galeria.html';
+}
+
+function abrirGaleriaPersonal() {
+  window.location.href = 'personal.html';
 }
 
 async function generarImagen() {
-const prompt = document.getElementById('prompt').value;
-const preview = document.getElementById('preview');
-if (!prompt.trim()) {
-preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
-return;
-}
-preview.innerHTML = "<p>Generando imagen... 🌌</p>";
-const respuesta = await fetch("https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image", {
-method: "POST",
-headers: {
-"Content-Type": "application/json",
-"Accept": "application/json",
-"Authorization": "Bearer sk-OCDqEkSg2JGqCQoBy7IY3zk2i52nRgUzGzV6rl1D6Fi7HXBW"
-},
-body: JSON.stringify({
-text_prompts: [{ text: prompt }],
-cfg_scale: 7,
-height: 512,
-width: 512,
-steps: 30,
-samples: 1
-})
-});
-const data = await respuesta.json();
-const imgBase64 = data.artifacts[0].base64;
-const imgSrc = data:image/png;base64,${imgBase64};
-preview.innerHTML = <img src="${imgSrc}" id="generated-image"> <div class='img-actions'> <a download="imagen_ia.png" href="${imgSrc}"><button>Descargar</button></a> <button onclick="guardarPersonalmente('${imgSrc}')">Guardar en espacio personal</button> </div>;
+  const prompt = document.getElementById('prompt').value;
+  const preview = document.getElementById('preview');
+  if (!prompt.trim()) {
+    preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
+    return;
+  }
+  preview.innerHTML = "<p>Generando imagen... 🌌</p>";
+  const respuesta = await fetch("https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer sk-OCDqEkSg2JGqCQoBy7IY3zk2i52nRgUzGzV6rl1D6Fi7HXBW"
+    },
+    body: JSON.stringify({
+      text_prompts: [{ text: prompt }],
+      cfg_scale: 7,
+      height: 512,
+      width: 512,
+      steps: 30,
+      samples: 1
+    })
+  });
+  const data = await respuesta.json();
+  const imgBase64 = data.artifacts[0].base64;
+  const imgSrc = `data:image/png;base64,${imgBase64}`;
+  preview.innerHTML = `<img src="${imgSrc}" id="generated-image"> <div class='img-actions'> <a download="imagen_ia.png" href="${imgSrc}"><button>Descargar</button></a> <button onclick="guardarPersonalmente('${imgSrc}')">Guardar en espacio personal</button> </div>`;
 }
 
 function guardarPersonalmente(url) {
-let imagenes = JSON.parse(localStorage.getItem('misImagenes') || '[]');
-imagenes.push(url);
-localStorage.setItem('misImagenes', JSON.stringify(imagenes));
-alert('Imagen guardada en tu espacio personal 💾');
+  let imagenes = JSON.parse(localStorage.getItem('misImagenes') || '[]');
+  imagenes.push(url);
+  localStorage.setItem('misImagenes', JSON.stringify(imagenes));
+  alert('Imagen guardada en tu espacio personal 💾');
 }
 
-  </script>  
-</body>  
-</html> 
-
+  </script>
+</body>
+</html>
