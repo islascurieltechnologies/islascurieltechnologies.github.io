@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Islas Curiel Technologies</title>
+  <meta charset="UTF-8" />
+  <title>IA de Imágenes - Islas Curiel Technologies</title>
   <style>
     html, body {
       height: 100%;
@@ -16,14 +16,11 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      padding: 40px 20px 100px;
-      box-sizing: border-box;
-    }
-    .contenedor {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
     }
     .tarjeta {
       background-color: rgba(0, 0, 0, 0.6);
@@ -31,8 +28,8 @@
       border-radius: 12px;
       padding: 20px;
       width: 300px;
-      min-height: 200px;
       text-align: center;
+      margin-bottom: 20px;
     }
     .tarjeta input[type="text"] {
       width: 90%;
@@ -53,6 +50,7 @@
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 15px;
       margin-top: 30px;
+      width: 90%;
     }
     .img-container {
       position: relative;
@@ -73,11 +71,8 @@
       color: white;
     }
     footer {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(0,0,0,0.6);
+      margin-top: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
       padding: 10px 20px;
       border-radius: 10px;
       font-size: 1em;
@@ -86,19 +81,24 @@
   </style>
 </head>
 <body>
-  <div class="contenedor">
-    <div class="tarjeta">
-      <h2>IA de Imágenes</h2>
-      <p>Escribe lo que imaginas… y dale vida.</p>
-      <input type="text" id="prompt" placeholder="Ej. Una kunoichi entre sombras">
-      <button onclick="generarImagen()">Crear imagen</button>
-      <button onclick="descargarTodas()">Descargar todas</button>
-    </div>
+  <audio autoplay>
+    <source src="entrada.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="tarjeta">
+    <h2>IA de Imágenes</h2>
+    <p>Escribe lo que imaginas… y dale vida.</p>
+    <input type="text" id="prompt" placeholder="Ej. Una kunoichi entre sombras">
+    <button onclick="generarImagen()">Crear imagen</button>
+    <button onclick="descargarTodas()">Descargar todas</button>
   </div>
+
   <div id="galeria"></div>
+
   <footer>
     Islas Curiel Technologies — Tu visión, nuestra creación
   </footer>
+
   <script>
     async function generarImagen() {
       const prompt = document.getElementById('prompt').value;
