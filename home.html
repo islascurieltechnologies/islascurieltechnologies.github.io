@@ -171,9 +171,7 @@
 
   <footer>
     <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
-    <p style="margin: 5px 0 0; font-size: 1em;">
-      Bienvenido al núcleo donde la technología se une con el alma
-    </p>
+    <p style="margin: 5px 0 0; font-size: 1em;">Bienvenido al núcleo donde la technología se une con el alma</p>
   </footer>
 
   <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
@@ -194,7 +192,6 @@
     async function generarImagen() {
       const prompt = document.getElementById('prompt').value;
       const preview = document.getElementById('preview');
-
       if (!prompt.trim()) {
         preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
         return;
@@ -202,23 +199,29 @@
 
       preview.innerHTML = "<p>Generando imagen... </p>";
 
-      const respuesta = await fetch("https://lalotuvartar.lalo-579.workers.dev", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ prompt })
-      });
+      try {
+        const respuesta = await fetch("https://lalotuvartar.lalo-579.workers.dev", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt })
+        });
 
-      const data = await respuesta.json();
-      const imgBase64 = data.artifacts[0].base64;
-      const imgSrc = `data:image/png;base64,${imgBase64}`;
-      preview.innerHTML = `<img src="${imgSrc}" id="generated-image">
-        <div class='img-actions'>
-          <a download="imagen_ia.png" href="${imgSrc}"><button>Descargar</button></a>
-          <button onclick="guardarImagenPersonal()">Guardar en espacio personal</button>
-          <button onclick="subirGaleriaPublica()">Subir a galería pública</button>
-        </div>`;
+        const data = await respuesta.json();
+        if (!data.artifacts || !data.artifacts[0].base64) {
+          throw new Error("No se recibió imagen válida.");
+        }
+
+        const imgBase64 = data.artifacts[0].base64;
+        const imgSrc = `data:image/png;base64,${imgBase64}`;
+        preview.innerHTML = `<img src="${imgSrc}" id="generated-image">
+          <div class='img-actions'>
+            <a download="imagen_ia.png" href="${imgSrc}"><button>Descargar</button></a>
+            <button onclick="guardarImagenPersonal()">Guardar en espacio personal</button>
+            <button onclick="subirGaleriaPublica()">Subir a galería pública</button>
+          </div>`;
+      } catch (e) {
+        preview.innerHTML = `<p style='color:red;'>Error generando imagen: ${e.message}</p>`;
+      }
     }
 
     function guardarImagenPersonal() {
@@ -259,3 +262,5 @@
   </div>
 </body>
 </html>
+
+
