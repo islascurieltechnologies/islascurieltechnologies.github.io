@@ -164,7 +164,7 @@
   <footer>
     <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
     <p style="margin: 5px 0 0; font-size: 1em;">
-      Bienvenido al núcleo donde la tecnología se une con el alma
+      Bienvenido al núcleo donde la technología se une con el alma
     </p>
   </footer>
   <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
@@ -181,13 +181,13 @@
         preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
         return;
       }
-      preview.innerHTML = "<p>Generando imagen... 🌌</p>";
+      preview.innerHTML = "<p>Generando imagen... </p>";
       const respuesta = await fetch("https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          "Authorization": "Bearer sk-OCDqEkSg2JGqCQoBy7IY3zk2i52nRgUzGzV6rl1D6Fi7HXBW"
+          "Authorization": "Bearer sk-f53wqfv5VSJn1IatzuAx5HjrfB4IRAttOgb863cFv4XI5R1n"
         },
         body: JSON.stringify({
           text_prompts: [{ text: prompt }],
@@ -210,13 +210,13 @@
       const imagenesGuardadas = JSON.parse(localStorage.getItem("misImagenes")) || [];
       imagenesGuardadas.push(imagen.src);
       localStorage.setItem("misImagenes", JSON.stringify(imagenesGuardadas));
-      alert("Imagen guardada en tu espacio personal 🌌");
+      alert("Imagen guardada en tu espacio personal ");
     }
 
     function subirGaleriaPublica() {
       const confirmar = confirm("¿Deseas subir esta imagen a la galería pública?");
       if (confirmar) {
-        alert("Imagen enviada para revisión y publicación 🌍 (función simulada)");
+        alert("Imagen enviada para revisión y publicación  (función simulada)");
       }
     }
 
