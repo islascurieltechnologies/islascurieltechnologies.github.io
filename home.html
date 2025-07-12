@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html><html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Islas Curiel Technologies</title>
@@ -167,14 +166,10 @@
       <p>Guarda tus avances, recursos y proyectos únicos.</p>
       <button onclick="verEspacioPersonal()">Mis imágenes</button>
     </div>
-  </div>
-
-  <footer>
+  </div>  <footer>
     <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
     <p style="margin: 5px 0 0; font-size: 1em;">Bienvenido al núcleo donde la technología se une con el alma</p>
-  </footer>
-
-  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
+  </footer><audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
 
   <script>
     window.addEventListener("click", () => {
@@ -206,16 +201,16 @@
           body: JSON.stringify({ prompt })
         });
 
-        const data = await respuesta.json();
-        if (!data.artifacts || !data.artifacts[0].base64) {
+        const blob = await respuesta.blob();
+
+        if (!blob || blob.type !== "image/jpeg") {
           throw new Error("No se recibió imagen válida.");
         }
 
-        const imgBase64 = data.artifacts[0].base64;
-        const imgSrc = `data:image/png;base64,${imgBase64}`;
-        preview.innerHTML = `<img src="${imgSrc}" id="generated-image">
+        const imgUrl = URL.createObjectURL(blob);
+        preview.innerHTML = `<img src="${imgUrl}" id="generated-image">
           <div class='img-actions'>
-            <a download="imagen_ia.png" href="${imgSrc}"><button>Descargar</button></a>
+            <a download="imagen_ia.jpg" href="${imgUrl}"><button>Descargar</button></a>
             <button onclick="guardarImagenPersonal()">Guardar en espacio personal</button>
             <button onclick="subirGaleriaPublica()">Subir a galería pública</button>
           </div>`;
@@ -249,9 +244,7 @@
       });
       document.getElementById("preview").innerHTML = html;
     }
-  </script>
-
-  <div id="popup-galeria">
+  </script>  <div id="popup-galeria">
     <div id="popup-overlay"></div>
     <div id="popup-content">
       <span id="popup-close">&times;</span>
@@ -262,5 +255,3 @@
   </div>
 </body>
 </html>
-
-
