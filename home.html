@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="es">
-<head>
+<!DOCTYPE html><html lang="es"><head>
   <meta charset="UTF-8">
   <title>Islas Curiel Technologies</title>
   <style>
@@ -166,12 +165,16 @@
       <p>Guarda tus avances, recursos y proyectos únicos.</p>
       <button onclick="verEspacioPersonal()">Mis imágenes</button>
     </div>
+    <div class="tarjeta">
+      <h2>Ayala Imagen Gradio</h2>
+      <p>Explora otro portal mágico con poder visual gratuito.</p>
+      <button onclick="window.open('https://tu-space.huggingface.space', '_blank')">🌌 Probar Gradio</button>
+    </div>
   </div>  <footer>
     <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
     <p style="margin: 5px 0 0; font-size: 1em;">Bienvenido al núcleo donde la technología se une con el alma</p>
-  </footer><audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
-
-  <script>
+  </footer>
+  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>  <script>
     window.addEventListener("click", () => {
       const sonido = document.getElementById("intro-sound");
       if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
