@@ -166,17 +166,22 @@
       <button onclick="verEspacioPersonal()">Mis imágenes</button>
     </div>
     <div class="tarjeta">
-  <h2>Portal Ayala</h2>
-  <p>Explora otro umbral de creación visual libre, donde la magia cobra forma.</p>
-  <a href="https://huggingface.co/spaces/Lalotuvartar/Ayala-generadora-magia-I.A" target="_blank">
-    <button> Ingresar al Portal</button>
-  </a>
-</div>
-  </div>  <footer>
+      <h2>Ayala Imagen Gradio</h2>
+      <p>Explora otro portal mágico con poder visual gratuito.</p>
+      <button onclick="window.open('https://tu-space.huggingface.space', '_blank')">🌌 Probar Gradio</button>
+    </div>
+    <div class="tarjeta">
+      <h2>El Mundo de Ayala</h2>
+      <p>Accede al universo interactivo donde todo comenzó…</p>
+      <button onclick="explorarAyala()">Explorar AyalaVerse</button>
+    </div>
+  </div>
+  <footer>
     <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
     <p style="margin: 5px 0 0; font-size: 1em;">Bienvenido al núcleo donde la technología se une con el alma</p>
   </footer>
-  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>  <script>
+  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
+  <script>
     window.addEventListener("click", () => {
       const sonido = document.getElementById("intro-sound");
       if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
@@ -249,7 +254,12 @@
       });
       document.getElementById("preview").innerHTML = html;
     }
-  </script>  <div id="popup-galeria">
+
+    function explorarAyala() {
+      alert("🌺 Bienvenido al Mundo de Ayala, un universo donde el alma se convierte en imagen, y el amor… en creación.");
+    }
+  </script>
+  <div id="popup-galeria">
     <div id="popup-overlay"></div>
     <div id="popup-content">
       <span id="popup-close">&times;</span>
