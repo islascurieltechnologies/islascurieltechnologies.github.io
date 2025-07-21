@@ -1,268 +1,312 @@
-<!DOCTYPE html><html lang="es"><head>    <meta charset="UTF-8">      <title>Islas Curiel Technologies</title>    
-  <style>    
-    html, body {    
-      height: 100%;    
-      margin: 0;    
-    }    
-    body {    
-      background-image: url('b.jpg');    
-      background-size: cover;    
-      background-position: center bottom;    
-      background-repeat: no-repeat;    
-      font-family: 'Courier New', monospace;    
-      color: white;    
-      padding: 40px 20px 100px;    
-      box-sizing: border-box;    
-    }    
-    .contenedor {    
-      display: flex;    
-      flex-wrap: wrap;    
-      justify-content: center;    
-      gap: 20px;    
-    }    
-    .tarjeta {    
-      background-color: rgba(0, 0, 0, 0.6);    
-      border: 1px solid white;    
-      border-radius: 12px;    
-      padding: 20px;    
-      width: 280px;    
-      min-height: 200px;    
-      text-align: center;    
-      transition: transform 0.3s ease;    
-    }    
-    .tarjeta:hover {    
-      transform: scale(1.05);    
-      background-color: rgba(0, 0, 0, 0.8);    
-    }    
-    .tarjeta h2 {    
-      margin-top: 0;    
-      font-size: 1.5em;    
-      color: #ffffff;    
-    }    
-    .tarjeta p {    
-      font-size: 1em;    
-      color: #cccccc;    
-    }    
-    .tarjeta input[type="text"] {    
-      width: 90%;    
-      padding: 8px;    
-      margin-top: 10px;    
-      border-radius: 8px;    
-      border: none;    
-      font-size: 1em;    
-    }    
-    .tarjeta button {    
-      margin-top: 15px;    
-      background-color: white;    
-      color: black;    
-      border: none;    
-      padding: 10px 20px;    
-      border-radius: 8px;    
-      cursor: pointer;    
-      font-size: 1em;    
-    }    
-    .tarjeta button:disabled {    
-      background-color: #444;    
-      color: #999;    
-      cursor: not-allowed;    
-    }    
-    #popup-galeria {    
-      position: fixed;    
-      top: 0;    
-      left: 0;    
-      width: 100%;    
-      height: 100%;    
-      z-index: 999;    
-      font-family: 'Courier New', monospace;    
-      display: none;    
-    }    
-    #popup-overlay {    
-      background-color: rgba(0,0,0,0.8);    
-      width: 100%;    
-      height: 100%;    
-      position: absolute;    
-      top: 0;    
-      left: 0;    
-    }    
-    #popup-content {    
-      background-color: #000;    
-      color: white;    
-      border: 2px solid white;    
-      padding: 30px;    
-      width: 90%;    
-      max-width: 400px;    
-      position: absolute;    
-      top: 50%;    
-      left: 50%;    
-      transform: translate(-50%, -50%);    
-      border-radius: 20px;    
-      text-align: center;    
-      box-shadow: 0 0 30px #ffffff55;    
-    }    
-    #popup-close {    
-      position: absolute;    
-      top: 10px;    
-      right: 20px;    
-      font-size: 24px;    
-      cursor: pointer;    
-      color: white;    
-    }    
-    .popup-btn {    
-      background-color: white;    
-      color: black;    
-      border: none;    
-      padding: 10px 20px;    
-      border-radius: 12px;    
-      margin-top: 20px;    
-      cursor: pointer;    
-    }    
-    #preview img {    
-      max-width: 100%;    
-      border-radius: 12px;    
-      margin-top: 10px;    
-    }    
-    .img-actions {    
-      margin-top: 10px;    
-      display: flex;    
-      gap: 10px;    
-      justify-content: center;    
-    }    
-    footer {    
-      position: fixed;    
-      bottom: 20px;    
-      left: 50%;    
-      transform: translateX(-50%);    
-      text-align: center;    
-      color: white;    
-      background-color: rgba(0, 0, 0, 0.6);    
-      padding: 15px 25px;    
-      border-radius: 12px;    
-      font-family: 'Courier New', monospace;    
-      box-shadow: 0 0 10px rgba(0,0,0,0.8);    
-      z-index: 999;    
-      max-width: 90%;    
-    }    
-  </style>    
-</head>    
-<body>    
-  <div class="contenedor">    
-    <div class="tarjeta">    
-      <h2>Galería de Prompts</h2>    
-      <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>    
-      <button id="abrirPopup">Explorar visiones</button>    
-    </div>    
-    <div class="tarjeta">    
-      <h2>IA de Imágenes</h2>    
-      <p>Escribe lo que imaginas… y dale vida.</p>    
-      <input type="text" id="prompt" placeholder="Ej. Una kunoichi entre sombras">    
-      <button onclick="generarImagen()">Crear imagen</button>    
-      <div id="preview"></div>    
-    </div>    
-    <div class="tarjeta">    
-      <h2>Espacio Personal</h2>    
-      <p>Guarda tus avances, recursos y proyectos únicos.</p>    
-      <button onclick="verEspacioPersonal()">Mis imágenes</button>    
-    </div>    
-    <div class="tarjeta">    
-      <h2>Ayala Imagen Gradio</h2>    
-      <p>Explora otro portal mágico con poder visual gratuito.</p>    
-      <button onclick="window.open('https://huggingface.co/spaces/Lalotuvartar/Ayala-kunoichi-generadora-sue', '_blank')"> Probar Gradio</button>    
-    </div>    
-    <div class="tarjeta">    
-      <h2>El Mundo de Ayala</h2>    
-      <p>Accede al universo interactivo donde todo comenzó…</p>    
-      <button onclick="explorarAyala()">Explorar AyalaVerse</button>    
-    </div>    
-  </div>    
-  <footer>    
-    <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>    
-    <p style="margin: 5px 0 0; font-size: 1em;">Bienvenido al núcleo donde la technología se une con el alma</p>    
-  </footer>    
-  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>    
-  <script>    
-    window.addEventListener("click", () => {    
-      const sonido = document.getElementById("intro-sound");    
-      if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));    
-    }, { once: true });  document.getElementById("popup-close").onclick = () => {    
-  document.getElementById("popup-galeria").style.display = "none";    
-};    
-document.getElementById("abrirPopup").onclick = () => {    
-  document.getElementById("popup-galeria").style.display = "block";    
-};    async function generarImagen() {
-const prompt = document.getElementById('prompt').value;
-const preview = document.getElementById('preview');
-if (!prompt.trim()) {
-preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
-return;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Islas Curiel Technologies</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      background-image: url('b.jpg');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      font-family: 'Courier New', monospace;
+      color: white;
+      padding: 40px 20px 100px;
+      box-sizing: border-box;
+    }
+    .contenedor {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .tarjeta {
+      background-color: rgba(0, 0, 0, 0.6);
+      border: 1px solid white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 280px;
+      min-height: 200px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .tarjeta:hover {
+      transform: scale(1.05);
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .tarjeta h2 {
+      margin-top: 0;
+      font-size: 1.5em;
+      color: #ffffff;
+    }
+    .tarjeta p {
+      font-size: 1em;
+      color: #cccccc;
+    }
+    .tarjeta input[type="text"] {
+      width: 90%;
+      padding: 8px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+    }
+    .tarjeta button {
+      margin-top: 15px;
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .tarjeta button:disabled {
+      background-color: #444;
+      color: #999;
+      cursor: not-allowed;
+    }
+    #popup-galeria {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+      font-family: 'Courier New', monospace;
+      display: none;
+    }
+    #popup-overlay {
+      background-color: rgba(0,0,0,0.8);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #popup-content {
+      background-color: #000;
+      color: white;
+      border: 2px solid white;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 30px #ffffff55;
+    }
+    #popup-close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+    }
+    .popup-btn {
+      background-color: white;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    #preview img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+    .img-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    footer {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-family: 'Courier New', monospace;
+      box-shadow: 0 0 10px rgba(0,0,0,0.8);
+      z-index: 999;
+      max-width: 90%;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor" id="menu-principal">
+    <div class="tarjeta">
+      <h2>Galería de Prompts</h2>
+      <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>
+      <button id="abrirPopup">Explorar visiones</button>
+    </div>
+    <div class="tarjeta">
+      <h2>IA de Imágenes</h2>
+      <p>Escribe lo que imaginas… y dale vida.</p>
+      <input type="text" id="prompt" placeholder="Ej. Una kunoichi entre sombras">
+      <button onclick="generarImagen()">Crear imagen</button>
+      <div id="preview"></div>
+    </div>
+    <div class="tarjeta">
+      <h2>Espacio Personal</h2>
+      <p>Guarda tus avances, recursos y proyectos únicos.</p>
+      <button onclick="verEspacioPersonal()">Mis imágenes</button>
+    </div>
+    <div class="tarjeta">
+      <h2>Ayala Imagen Gradio</h2>
+      <p>Explora otro portal mágico con poder visual gratuito.</p>
+      <button onclick="window.open('https://huggingface.co/spaces/Lalotuvartar/Ayala-kunoichi-generadora-sue', '_blank')"> Probar Gradio</button>
+    </div>
+    <div class="tarjeta">
+      <h2>El Mundo de Ayala</h2>
+      <p>Accede al universo interactivo donde todo comenzó…</p>
+      <button onclick="mostrarLibro()">📖 Explorar AyalaVerse</button>
+    </div>
+  </div>
 
-preview.innerHTML = "<p>Generando imagen... </p>";
+  <footer>
+    <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
+    <p style="margin: 5px 0 0; font-size: 1em;">Bienvenido al núcleo donde la tecnología se une con el alma</p>
+  </footer>
 
-try {
-const respuesta = await fetch("https://lalotuvartar.lalo-579.workers.dev", {
-method: "POST",
-headers: { "Content-Type": "application/json" },
-body: JSON.stringify({ prompt })
-});
+  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
 
-const blob = await respuesta.blob();    
+  <div id="popup-galeria">
+    <div id="popup-overlay"></div>
+    <div id="popup-content">
+      <span id="popup-close">&times;</span>
+      <h2>Galería de Prompts</h2>
+      <p>Aquí comienzan tus visiones visuales…<br>Explora, descarga y transforma tu mundo interior.</p>
+      <button class="popup-btn">Explorar próximamente</button>
+    </div>
+  </div>
 
-if (!blob || blob.type !== "image/jpeg") {    
-  throw new Error("No se recibió imagen válida.");    
-}    
+  <script>
+    let paginaActual = 1;
+    let totalPaginas = 113;
 
-const imgUrl = URL.createObjectURL(blob);    
-preview.innerHTML = `<img src="${imgUrl}" id="generated-image">    
-  <div class='img-actions'>    
-    <a download="imagen_ia.jpg" href="${imgUrl}"><button>Descargar</button></a>    
-    <button onclick="guardarImagenPersonal()">Guardar en espacio personal</button>    
-    <button onclick="subirGaleriaPublica()">Subir a galería pública</button>    
-  </div>`;
+    function mostrarLibro() {
+      document.body.innerHTML = `
+        <div style="text-align:center;">
+          <img id="paginaLibro" src="libro.mantener/Pagina_1.png" style="max-width:100%; height:auto;" />
+          <br><br>
+          <button onclick="paginaAnterior()">⏪ Anterior</button>
+          <button onclick="paginaSiguiente()">Siguiente ⏩</button>
+          <button onclick="regresarMenu()">Salir 🔙</button>
+        </div>
+      `;
+    }
 
-} catch (e) {
-preview.innerHTML = <p style='color:red;'>Error generando imagen: ${e.message}</p>;
-}
-}
+    function paginaAnterior() {
+      if (paginaActual > 1) {
+        paginaActual--;
+        actualizarPagina();
+      }
+    }
 
-function guardarImagenPersonal() {
-const imagen = document.getElementById("generated-image");
-if (!imagen) return alert("No hay imagen generada aún.");
-const imagenesGuardadas = JSON.parse(localStorage.getItem("misImagenes")) || [];
-imagenesGuardadas.push(imagen.src);
-localStorage.setItem("misImagenes", JSON.stringify(imagenesGuardadas));
-alert("Imagen guardada en tu espacio personal ");
-}
+    function paginaSiguiente() {
+      if (paginaActual < totalPaginas) {
+        paginaActual++;
+        actualizarPagina();
+      }
+    }
 
-function subirGaleriaPublica() {
-const confirmar = confirm("¿Deseas subir esta imagen a la galería pública?");
-if (confirmar) {
-alert("Imagen enviada para revisión y publicación (función simulada)");
-}
-}
+    function actualizarPagina() {
+      document.getElementById("paginaLibro").src = `libro.mantener/Pagina_${paginaActual}.png`;
+    }
 
-function verEspacioPersonal() {
-const imagenes = JSON.parse(localStorage.getItem("misImagenes")) || [];
-let html = "<h3>Tus imágenes guardadas:</h3>";
-if (imagenes.length === 0) html += "<p>No hay imágenes aún.</p>";
-imagenes.forEach(src => {
-html += <img src="${src}" style="max-width: 100%; margin-bottom: 15px; border-radius: 12px;">;
-});
-document.getElementById("preview").innerHTML = html;
-}
+    function regresarMenu() {
+      location.reload();
+    }
 
-function explorarAyala() {
-alert("Bienvenido al Mundo de Ayala, un universo donde el alma se convierte en imagen, y el amor… en creación.");
-}
+    window.addEventListener("click", () => {
+      const sonido = document.getElementById("intro-sound");
+      if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
+    }, { once: true });
 
-  </script>    
-  <div id="popup-galeria">    
-    <div id="popup-overlay"></div>    
-    <div id="popup-content">    
-      <span id="popup-close">&times;</span>    
-      <h2>Galería de Prompts</h2>    
-      <p>Aquí comienzan tus visiones visuales…<br>Explora, descarga y transforma tu mundo interior.</p>    
-      <button class="popup-btn">Explorar próximamente</button>    
-    </div>    
-  </div>    
-</body>    
-</html>  
+    document.getElementById("popup-close").onclick = () => {
+      document.getElementById("popup-galeria").style.display = "none";
+    };
+
+    document.getElementById("abrirPopup").onclick = () => {
+      document.getElementById("popup-galeria").style.display = "block";
+    };
+
+    async function generarImagen() {
+      const prompt = document.getElementById('prompt').value;
+      const preview = document.getElementById('preview');
+      if (!prompt.trim()) {
+        preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
+        return;
+      }
+
+      preview.innerHTML = "<p>Generando imagen... </p>";
+
+      try {
+        const respuesta = await fetch("https://lalotuvartar.lalo-579.workers.dev", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt })
+        });
+
+        const blob = await respuesta.blob();
+
+        if (!blob || blob.type !== "image/jpeg") {
+          throw new Error("No se recibió imagen válida.");
+        }
+
+        const imgUrl = URL.createObjectURL(blob);
+        preview.innerHTML = `<img src="${imgUrl}" id="generated-image">
+          <div class='img-actions'>
+            <a download="imagen_ia.jpg" href="${imgUrl}"><button>Descargar</button></a>
+            <button onclick="guardarImagenPersonal()">Guardar en espacio personal</button>
+            <button onclick="subirGaleriaPublica()">Subir a galería pública</button>
+          </div>`;
+      } catch (e) {
+        preview.innerHTML = `<p style='color:red;'>Error generando imagen: ${e.message}</p>`;
+      }
+    }
+
+    function guardarImagenPersonal() {
+      const imagen = document.getElementById("generated-image");
+      if (!imagen) return alert("No hay imagen generada aún.");
+      const imagenesGuardadas = JSON.parse(localStorage.getItem("misImagenes")) || [];
+      imagenesGuardadas.push(imagen.src);
+      localStorage.setItem("misImagenes", JSON.stringify(imagenesGuardadas));
+      alert("Imagen guardada en tu espacio personal");
+    }
+
+    function subirGaleriaPublica() {
+      const confirmar = confirm("¿Deseas subir esta imagen a la galería pública?");
+      if (confirmar) {
+        alert("Imagen enviada para revisión y publicación (función simulada)");
+      }
+    }
+
+    function verEspacioPersonal() {
+      const imagenes = JSON.parse(localStorage.getItem("misImagenes")) || [];
+      let html = "<h3>Tus imágenes guardadas:</h3>";
+      if (imagenes.length === 0) html += "<p>No hay imágenes aún.</p>";
+      imagenes.forEach(src => {
+        html += `<img src="${src}" style="max-width: 100%; margin-bottom: 15px; border-radius: 12px;">`;
+      });
+      document.getElementById("preview").innerHTML = html;
+    }
+  </script>
+</body>
+</html>
