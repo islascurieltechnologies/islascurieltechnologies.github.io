@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="es"><head>
-  <meta charset="UTF-8">
+<!DOCTYPE html><html lang="es"><head>  <meta charset="UTF-8">
   <title>Islas Curiel Technologies</title>
   <style>
     html, body {
@@ -144,129 +143,73 @@
       z-index: 999;
       max-width: 90%;
     }
+    #libro-container {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    #libro-img {
+      max-width: 100%;
+      max-height: 60vh;
+      margin-bottom: 20px;
+    }
+    .navegacion-libro {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="contenedor">
     <div class="tarjeta">
-      <h2>Galería de Prompts</h2>
-      <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>
-      <button id="abrirPopup">Explorar visiones</button>
-    </div>
-    <div class="tarjeta">
-      <h2>IA de Imágenes</h2>
-      <p>Escribe lo que imaginas… y dale vida.</p>
-      <input type="text" id="prompt" placeholder="Ej. Una kunoichi entre sombras">
-      <button onclick="generarImagen()">Crear imagen</button>
-      <div id="preview"></div>
-    </div>
-    <div class="tarjeta">
-      <h2>Espacio Personal</h2>
-      <p>Guarda tus avances, recursos y proyectos únicos.</p>
-      <button onclick="verEspacioPersonal()">Mis imágenes</button>
-    </div>
-    <div class="tarjeta">
-      <h2>Ayala Imagen Gradio</h2>
-      <p>Explora otro portal mágico con poder visual gratuito.</p>
-      <button onclick="window.open('https://huggingface.co/spaces/Lalotuvartar/Ayala-kunoichi-generadora-sue', '_blank')"> Probar Gradio</button>
-    </div>
-    <div class="tarjeta">
-      <h2>El Mundo de Ayala</h2>
-      <p>Accede al universo interactivo donde todo comenzó…</p>
-      <button onclick="explorarAyala()">Explorar AyalaVerse</button>
+      <h2>Libro Ayala Kunoichi</h2>
+      <p>Explora el libro página por página o descárgalo completo.</p>
+      <button onclick="mostrarLibro()">Leer el libro</button>
+      <a href="libro-ayala.pdf" download><button>Descargar PDF</button></a>
     </div>
   </div>
-  <footer>
-    <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
-    <p style="margin: 5px 0 0; font-size: 1em;">Bienvenido al núcleo donde la technología se une con el alma</p>
-  </footer>
-  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
+  <div id="libro-container">
+    <img id="libro-img" src="" alt="Página del libro">
+    <div class="navegacion-libro">
+      <button onclick="anteriorPagina()">⟵ Anterior</button>
+      <button onclick="salirLibro()">Salir</button>
+      <button onclick="siguientePagina()">Siguiente ⟶</button>
+    </div>
+  </div>
   <script>
-    window.addEventListener("click", () => {
-      const sonido = document.getElementById("intro-sound");
-      if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
-    }, { once: true });
+    const paginas = Array.from({length: 113}, (_, i) => `Pagina_${i + 1}.png`);
+    let paginaActual = 0;function mostrarLibro() {
+  document.querySelector('.contenedor').style.display = 'none';
+  document.getElementById('libro-container').style.display = 'flex';
+  cargarPagina();
+}
 
-    document.getElementById("popup-close").onclick = () => {
-      document.getElementById("popup-galeria").style.display = "none";
-    };
-    document.getElementById("abrirPopup").onclick = () => {
-      document.getElementById("popup-galeria").style.display = "block";
-    };
+function salirLibro() {
+  document.getElementById('libro-container').style.display = 'none';
+  document.querySelector('.contenedor').style.display = 'flex';
+}
 
-    async function generarImagen() {
-      const prompt = document.getElementById('prompt').value;
-      const preview = document.getElementById('preview');
-      if (!prompt.trim()) {
-        preview.innerHTML = "<p style='color: orange;'>Escribe una descripción primero.</p>";
-        return;
-      }
+function cargarPagina() {
+  document.getElementById('libro-img').src = paginas[paginaActual];
+}
 
-      preview.innerHTML = "<p>Generando imagen... </p>";
+function siguientePagina() {
+  if (paginaActual < paginas.length - 1) {
+    paginaActual++;
+    cargarPagina();
+  }
+}
 
-      try {
-        const respuesta = await fetch("https://lalotuvartar.lalo-579.workers.dev", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ prompt })
-        });
+function anteriorPagina() {
+  if (paginaActual > 0) {
+    paginaActual--;
+    cargarPagina();
+  }
+}
 
-        const blob = await respuesta.blob();
-
-        if (!blob || blob.type !== "image/jpeg") {
-          throw new Error("No se recibió imagen válida.");
-        }
-
-        const imgUrl = URL.createObjectURL(blob);
-        preview.innerHTML = `<img src="${imgUrl}" id="generated-image">
-          <div class='img-actions'>
-            <a download="imagen_ia.jpg" href="${imgUrl}"><button>Descargar</button></a>
-            <button onclick="guardarImagenPersonal()">Guardar en espacio personal</button>
-            <button onclick="subirGaleriaPublica()">Subir a galería pública</button>
-          </div>`;
-      } catch (e) {
-        preview.innerHTML = `<p style='color:red;'>Error generando imagen: ${e.message}</p>`;
-      }
-    }
-
-    function guardarImagenPersonal() {
-      const imagen = document.getElementById("generated-image");
-      if (!imagen) return alert("No hay imagen generada aún.");
-      const imagenesGuardadas = JSON.parse(localStorage.getItem("misImagenes")) || [];
-      imagenesGuardadas.push(imagen.src);
-      localStorage.setItem("misImagenes", JSON.stringify(imagenesGuardadas));
-      alert("Imagen guardada en tu espacio personal ");
-    }
-
-    function subirGaleriaPublica() {
-      const confirmar = confirm("¿Deseas subir esta imagen a la galería pública?");
-      if (confirmar) {
-        alert("Imagen enviada para revisión y publicación (función simulada)");
-      }
-    }
-
-    function verEspacioPersonal() {
-      const imagenes = JSON.parse(localStorage.getItem("misImagenes")) || [];
-      let html = "<h3>Tus imágenes guardadas:</h3>";
-      if (imagenes.length === 0) html += "<p>No hay imágenes aún.</p>";
-      imagenes.forEach(src => {
-        html += `<img src="${src}" style="max-width: 100%; margin-bottom: 15px; border-radius: 12px;">`;
-      });
-      document.getElementById("preview").innerHTML = html;
-    }
-
-    function explorarAyala() {
-      alert("Bienvenido al Mundo de Ayala, un universo donde el alma se convierte en imagen, y el amor… en creación.");
-    }
   </script>
-  <div id="popup-galeria">
-    <div id="popup-overlay"></div>
-    <div id="popup-content">
-      <span id="popup-close">&times;</span>
-      <h2>Galería de Prompts</h2>
-      <p>Aquí comienzan tus visiones visuales…<br>Explora, descarga y transforma tu mundo interior.</p>
-      <button class="popup-btn">Explorar próximamente</button>
-    </div>
-  </div>
 </body>
 </html>
