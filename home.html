@@ -151,7 +151,7 @@
   </style>      
 </head>      
 <body>      
-  <div class="contenedor" id="menu-principal">      
+        <div class="contenedor" id="menu-principal" style="display: none;">
     <div class="tarjeta">      
       <h2>Galería de Prompts</h2>      
       <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>      
@@ -178,14 +178,15 @@
   <h2>El Mundo de Ayala</h2>  
   <p>Accede al universo interactivo donde todo comenzó…</p>  
   <button onclick="iniciarSesionGoogle()">📖 Explorar AyalaVerse</button>  
-</div>  
-  </div>    <div id="libro-viewer">      
+</div>  </div>    
+  <div id="libro-viewer" style="display: block;">      
     <img id="paginaLibro" src="libro.mantener/pagina_1.png" style="max-width:100%; height:auto;" />      
     <br><br>      
     <button onclick="paginaAnterior()">⏪ Anterior</button>      
     <button onclick="paginaSiguiente()">Siguiente ⏩</button>      
     <button onclick="regresarMenu()">Salir 🔙</button>      
-  </div>    <footer>      
+  </div>
+      <footer>      
     <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>      
     <p style="margin: 5px 0 0; font-size: 1em;">Bienvenido al núcleo donde la tecnología se une con el alma</p>      
   </footer>  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>    <div id="popup-galeria">      
@@ -325,4 +326,4 @@ function iniciarSesionGoogle() {
 }
 </script>  </body>
 
-</html>    
+</html> 
