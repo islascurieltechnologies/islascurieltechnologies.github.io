@@ -247,7 +247,7 @@ actualizarPagina();
 }
 
 function actualizarPagina() {
-document.getElementById("paginaLibro").src = libro.mantener/pagina_${paginaActual}.png;
+document.getElementById("paginaLibro").src = `libro.mantener/pagina_${paginaActual}.png`;
 }
 
 window.addEventListener("click", () => {
@@ -424,4 +424,4 @@ function verGaleriaAyala() {
   }  
   document.getElementById("galeria-ayala").innerHTML = html;  
 }  
-</script>   </body>  </html> 
+</script>   </body>  </html>
