@@ -65,7 +65,7 @@
       cursor: pointer;
       font-size: 1em;
     }
-    #libro-viewer {
+    #libro-viewer, #zona-premium {
       display: none;
       text-align: center;
       margin-top: 20px;
@@ -118,9 +118,14 @@
       <p>Accede al universo interactivo donde todo comenzó…</p>
       <button onclick="iniciarAyalaVerse()">📖 Explorar AyalaVerse</button>
     </div>
+    <div class="tarjeta">
+      <h2>Zona Premium</h2>
+      <p>Acceso exclusivo con autenticación segura.</p>
+      <button onclick="accederZonaPremium()">🔐 Entrar</button>
+    </div>
   </div>
 
-  <div id="libro-viewer" style="display:none;">
+  <div id="libro-viewer">
     <img id="paginaLibro" src="libro.mantener/pagina_1.png" style="max-width:100%; height:auto;" />
     <br><br>
     <button onclick="paginaAnterior()">⏪ Anterior</button>
@@ -131,6 +136,12 @@
       <source src="renacimiento.mp3" type="audio/mpeg">
       Tu navegador no soporta audio.
     </audio>
+  </div>
+
+  <div id="zona-premium">
+    <h2>Bienvenido a la Zona Premium</h2>
+    <p>Contenido desbloqueado tras autenticación segura.</p>
+    <button onclick="regresarMenu()">🔙 Salir</button>
   </div>
 
   <footer>
@@ -152,6 +163,7 @@
 
     function regresarMenu() {
       document.getElementById("libro-viewer").style.display = "none";
+      document.getElementById("zona-premium").style.display = "none";
       document.getElementById("menu-principal").style.display = "flex";
     }
 
@@ -223,6 +235,13 @@
         html += `<img src="${src}" style="max-width: 100%; margin-bottom: 15px; border-radius: 12px;">`;
       });
       document.getElementById("preview").innerHTML = html;
+    }
+
+    function accederZonaPremium() {
+      // Simulación de login exitoso (debes conectar esto con tu backend real)
+      alert("Acceso concedido con autenticación de Google");
+      document.getElementById("menu-principal").style.display = "none";
+      document.getElementById("zona-premium").style.display = "block";
     }
   </script>
 </body>
