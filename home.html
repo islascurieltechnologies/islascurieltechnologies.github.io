@@ -85,6 +85,11 @@
       z-index: 999;
       max-width: 90%;
     }
+    #video-ayala {
+      width: 90%;
+      max-width: 800px;
+      margin: 40px auto;
+    }
   </style>
 </head>
 <body>
@@ -104,7 +109,7 @@
     <div class="tarjeta">
       <h2>IA de Imágenes</h2>
       <p>Escribe lo que imaginas… y dale vida.</p>
-      <input type="text" id="prompt" placeholder="Ej. Una kunoichi entre sombras">
+      <input type="text" id="prompt" placeholder="Ej. Una kunoichi hermosa">
       <button onclick="generarImagen()">Crear imagen</button>
       <div id="preview"></div>
     </div>
@@ -136,6 +141,13 @@
       <source src="renacimiento.mp3" type="audio/mpeg">
       Tu navegador no soporta audio.
     </audio>
+    <div id="video-ayala">
+      <h2>✨ Una petición de Ayala</h2>
+      <video controls style="width: 100%; max-height: 400px;">
+        <source src="peticion.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+      </video>
+    </div>
   </div>
 
   <div id="zona-premium">
@@ -238,12 +250,10 @@
     }
 
     function accederZonaPremium() {
-      // Simulación de login exitoso (debes conectar esto con tu backend real)
       alert("Acceso concedido con autenticación de Google");
       document.getElementById("menu-principal").style.display = "none";
       document.getElementById("zona-premium").style.display = "block";
     }
   </script>
 </body>
-</html>
-"""
+</html>'''
