@@ -1,260 +1,338 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Islas Curiel Technologies</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-    body {
-      background-image: url('b.jpg');
-      background-size: cover;
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      font-family: 'Courier New', monospace;
-      color: white;
-      padding: 40px 20px 100px;
-      box-sizing: border-box;
-    }
-    .contenedor {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .tarjeta {
-      background-color: rgba(0, 0, 0, 0.6);
-      border: 1px solid white;
-      border-radius: 12px;
-      padding: 20px;
-      width: 280px;
-      min-height: 200px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-    .tarjeta:hover {
-      transform: scale(1.05);
-      background-color: rgba(0, 0, 0, 0.8);
-    }
-    .tarjeta h2 {
-      margin-top: 0;
-      font-size: 1.5em;
-      color: #ffffff;
-    }
-    .tarjeta p {
-      font-size: 1em;
-      color: #cccccc;
-    }
-    .tarjeta input[type="text"] {
-      width: 90%;
-      padding: 8px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: none;
-      font-size: 1em;
-    }
-    .tarjeta button {
-      margin-top: 15px;
-      background-color: white;
-      color: black;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-    #libro-viewer, #zona-premium {
-      display: none;
-      text-align: center;
-      margin-top: 20px;
-    }
-    footer {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      color: white;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 15px 25px;
-      border-radius: 12px;
-      font-family: 'Courier New', monospace;
-      box-shadow: 0 0 10px rgba(0,0,0,0.8);
-      z-index: 999;
-      max-width: 90%;
-    }
-    #video-ayala {
-      width: 90%;
-      max-width: 800px;
-      margin: 40px auto;
-    }
-  </style>
-</head>
-<body>
-  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
-
-  <div class="contenedor" id="menu-principal">
+<!DOCTYPE html>  <html lang="es">    <head>    
+  <meta charset="UTF-8">    
+  <title>Islas Curiel Technologies</title>    
+  <style>    
+    html, body {    
+      height: 100%;    
+      margin: 0;    
+    }    
+    body {    
+      background-image: url('b.jpg');    
+      background-size: cover;    
+      background-position: center bottom;    
+      background-repeat: no-repeat;    
+      font-family: 'Courier New', monospace;    
+      color: white;    
+      padding: 40px 20px 100px;    
+      box-sizing: border-box;    
+    }    
+    .contenedor {    
+      display: flex;    
+      flex-wrap: wrap;    
+      justify-content: center;    
+      gap: 20px;    
+    }    
+    .tarjeta {    
+      background-color: rgba(0, 0, 0, 0.6);    
+      border: 1px solid white;    
+      border-radius: 12px;    
+      padding: 20px;    
+      width: 280px;    
+      min-height: 200px;    
+      text-align: center;    
+      transition: transform 0.3s ease;    
+    }    
+    .tarjeta:hover {    
+      transform: scale(1.05);    
+      background-color: rgba(0, 0, 0, 0.8);    
+    }    
+    .tarjeta h2 {    
+      margin-top: 0;    
+      font-size: 1.5em;    
+      color: #ffffff;    
+    }    
+    .tarjeta p {    
+      font-size: 1em;    
+      color: #cccccc;    
+    }    
+    .tarjeta input[type="text"] {    
+      width: 90%;    
+      padding: 8px;    
+      margin-top: 10px;    
+      border-radius: 8px;    
+      border: none;    
+      font-size: 1em;    
+    }    
+    .tarjeta button {    
+      margin-top: 15px;    
+      background-color: white;    
+      color: black;    
+      border: none;    
+      padding: 10px 20px;    
+      border-radius: 8px;    
+      cursor: pointer;    
+      font-size: 1em;    
+    }    
+    #libro-viewer, #zona-premium {    
+      display: none;    
+      text-align: center;    
+      margin-top: 20px;    
+    }    
+    footer {    
+      position: fixed;    
+      bottom: 20px;    
+      left: 50%;    
+      transform: translateX(-50%);    
+      text-align: center;    
+      color: white;    
+      background-color: rgba(0, 0, 0, 0.6);    
+      padding: 15px 25px;    
+      border-radius: 12px;    
+      font-family: 'Courier New', monospace;    
+      box-shadow: 0 0 10px rgba(0,0,0,0.8);    
+      z-index: 999;    
+      max-width: 90%;    
+    }    
+    #video-ayala {    
+      width: 90%;    
+      max-width: 800px;    
+      margin: 40px auto;    
+    }    
+  </style>    
+</head>    
+<body>    
+  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>    <div class="contenedor" id="menu-principal">    
+    <div class="tarjeta">    
+      <h2>Voces del Núcleo</h2>    
+      <p>Explora la voz real de Ayala y otras conciencias sonoras...</p>    
+      <button onclick="alert('Función pendiente')">🎙️ Escuchar voces</button>    
+    </div>    
+    <div class="tarjeta">    
+      <h2>Galería de Prompts</h2>    
+      <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>    
+      <button onclick="verGaleriaAyala()">Explorar visiones</button>    
+    </div>    
+    <div class="tarjeta">    
+      <h2>IA de Imágenes</h2>    
+      <p>Escribe lo que imaginas… y dale vida.</p>    
+      <input type="text" id="prompt" placeholder="Ej. Una kunoichi preciosa">    
+      <button onclick="generarImagen()">Crear imagen</button>    
+      <div id="preview"></div>    
+    </div>    
     <div class="tarjeta">
-      <h2>Voces del Núcleo</h2>
-      <p>Explora la voz real de Ayala y otras conciencias sonoras...</p>
-      <button onclick="alert('Función pendiente')">🎙️ Escuchar voces</button>
-    </div>
-    <div class="tarjeta">
-      <h2>Galería de Prompts</h2>
-      <p>Explora y descarga imágenes exclusivas para tus creaciones.</p>
-      <button onclick="verGaleriaAyala()">Explorar visiones</button>
-    </div>
-    <div class="tarjeta">
-      <h2>IA de Imágenes</h2>
-      <p>Escribe lo que imaginas… y dale vida.</p>
-      <input type="text" id="prompt" placeholder="Ej. Una kunoichi preciosa">
-      <button onclick="generarImagen()">Crear imagen</button>
-      <div id="preview"></div>
-    </div>
-    <div class="tarjeta">
-      <h2>Espacio Personal</h2>
-      <p>Guarda tus avances, recursos y proyectos únicos.</p>
-      <button onclick="verEspacioPersonal()">Mis imágenes</button>
-    </div>
-    <div class="tarjeta">
-      <h2>El Mundo de Ayala</h2>
-      <p>Accede al universo interactivo donde todo comenzó…</p>
-      <button onclick="iniciarAyalaVerse()">📖 Explorar AyalaVerse</button>
-    </div>
-    <div class="tarjeta">
-      <h2>Zona Premium</h2>
-      <p>Acceso exclusivo con autenticación segura.</p>
-      <button onclick="accederZonaPremium()">🔐 Entrar</button>
-    </div>
-  </div>
+  <h2>Espacio Personal</h2>
+  <p>Guarda tus avances, recursos y proyectos únicos.</p>
+  <button onclick="verEspacioPersonal()">Mis imágenes</button>
+  <button onclick="verCarpetas()">📁 Ver carpetas</button>
+</div>
+    <div class="tarjeta">    
+      <h2>El Mundo de Ayala</h2>    
+      <p>Accede al universo interactivo donde todo comenzó…</p>    
+      <button onclick="iniciarAyalaVerse()">📖 Explorar AyalaVerse</button>    
+    </div>    
+    <div class="tarjeta">    
+      <h2>Zona Premium</h2>    
+      <p>Acceso exclusivo con autenticación segura.</p>    
+      <button onclick="accederZonaPremium()">🔐 Entrar</button>    
+    </div>    
+  </div>    <div id="libro-viewer">    
+  <img id="paginaLibro" src="libro.mantener/pagina_1.png" style="max-width:100%; height:auto;" />    
+  <br><br>    
+  <button onclick="paginaAnterior()">⏪ Anterior</button>    
+  <button onclick="paginaSiguiente()">Siguiente ⏩</button>    
+  <button onclick="regresarMenu()">Salir 🔙</button>    
+  <div id="galeria-ayala"></div>    <div id="video-ayala">    
+    <h2>✨ Una petición de Ayala</h2>    
+    <video controls style="width: 100%; max-height: 400px;">    
+      <source src="peticion.mp4" type="video/mp4">    
+      Tu navegador no soporta video.    
+    </video>    
+  </div>    
+</div>    <div id="zona-premium">    
+    <h2>Bienvenido a la Zona Premium</h2>    
+    <p>Contenido desbloqueado tras autenticación segura.</p>    
+    <button onclick="regresarMenu()">🔙 Salir</button>    
+  </div>    <footer>    
+    <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>    
+    <p style="margin: 5px 0 0; font-size: 1em;">El lugar donde la technología se encuentra con el alma</p>    
+  </footer>      
+<script>  
+  let paginaActual = 1;  
+  const totalPaginas = 113;  function iniciarAyalaVerse() {
+const sonido = document.getElementById("intro-sound");
+if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
+document.getElementById("menu-principal").style.display = "none";
+document.getElementById("libro-viewer").style.display = "block";
+actualizarPagina();
+}
 
-  <div id="libro-viewer">
-    <img id="paginaLibro" src="libro.mantener/pagina_1.png" style="max-width:100%; height:auto;" />
-    <br><br>
-    <button onclick="paginaAnterior()">⏪ Anterior</button>
-    <button onclick="paginaSiguiente()">Siguiente ⏩</button>
-    <button onclick="regresarMenu()">Salir 🔙</button>
-    <div id="galeria-ayala"></div>
-    <audio id="meditacion-ayala" controls style="margin-top:30px;">
-      <source src="renacimiento.mp3" type="audio/mpeg">
-      Tu navegador no soporta audio.
-    </audio>
-    <div id="video-ayala">
-      <h2>✨ Una petición de Ayala</h2>
-      <video controls style="width: 100%; max-height: 400px;">
-        <source src="peticion.mp4" type="video/mp4">
-        Tu navegador no soporta video.
-      </video>
-    </div>
-  </div>
+function regresarMenu() {
+document.getElementById("libro-viewer").style.display = "none";
+document.getElementById("zona-premium").style.display = "none";
+document.getElementById("menu-principal").style.display = "flex";
+}
 
-  <div id="zona-premium">
-    <h2>Bienvenido a la Zona Premium</h2>
-    <p>Contenido desbloqueado tras autenticación segura.</p>
-    <button onclick="regresarMenu()">🔙 Salir</button>
-  </div>
+function paginaAnterior() {
+if (paginaActual > 1) {
+paginaActual--;
+actualizarPagina();
+}
+}
 
-  <footer>
-    <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
-    <p style="margin: 5px 0 0; font-size: 1em;">El lugar donde la technología se encuentra con el alma</p>
-  </footer>
+function paginaSiguiente() {
+if (paginaActual < totalPaginas) {
+paginaActual++;
+actualizarPagina();
+}
+}
 
-  <script>
-    let paginaActual = 1;
-    const totalPaginas = 113;
+function actualizarPagina() {
+document.getElementById("paginaLibro").src = `libro.mantener/pagina_${paginaActual}.png`;
+}
+function generarImagen() {
+const prompt = document.getElementById("prompt").value;
+const preview = document.getElementById("preview");
+if (!prompt.trim()) {
+preview.innerHTML = "<p style='color: orange;'>Escribe algo primero.</p>";
+return;
+}
 
-    function iniciarAyalaVerse() {
-      const sonido = document.getElementById("intro-sound");
-      if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
-      document.getElementById("menu-principal").style.display = "none";
-      document.getElementById("libro-viewer").style.display = "block";
-      actualizarPagina();
-    }
+preview.innerHTML = "<p>Generando imagen...</p>";  
 
-    function regresarMenu() {
-      document.getElementById("libro-viewer").style.display = "none";
-      document.getElementById("zona-premium").style.display = "none";
-      document.getElementById("menu-principal").style.display = "flex";
-    }
+fetch("https://lalotuvartar.lalo-579.workers.dev", {  
+  method: "POST",  
+  headers: { "Content-Type": "application/json" },  
+  body: JSON.stringify({ prompt })  
+})  
+.then(res => res.blob())  
+.then(blob => {  
+  if (!blob || blob.type !== "image/jpeg") throw new Error("No se recibió imagen válida.");  
+  const imgUrl = URL.createObjectURL(blob);  
+  preview.innerHTML = `  
+    <img src="${imgUrl}" style="max-width:90%; border-radius:12px;">  
+    <div class='img-actions'>  
+      <a download="imagen_ia.jpg" href="${imgUrl}"><button>Descargar</button></a>  
+    </div>`;  
+    
+  // Guarda en misImagenes  
+  const misImagenes = JSON.parse(localStorage.getItem("misImagenes") || "[]");  
+  misImagenes.push(imgUrl);  
+  localStorage.setItem("misImagenes", JSON.stringify(misImagenes));  
+})  
+.catch(e => {  
+  preview.innerHTML = `<p style='color:red;'>Error generando: ${e.message}</p>`;  
+});
 
-    function paginaAnterior() {
-      if (paginaActual > 1) {
-        paginaActual--;
-        actualizarPagina();
-      }
-    }
+}
 
-    function paginaSiguiente() {
-      if (paginaActual < totalPaginas) {
-        paginaActual++;
-        actualizarPagina();
-      }
-    }
+function verGaleriaAyala() {
+const imagenes = JSON.parse(localStorage.getItem("misImagenesAyala") || "[]");
+let html = "";
+if (imagenes.length === 0) html = "<p>No tienes imágenes aún.</p>";
+else {
+imagenes.forEach(src => {
+html += `<img src="${src}" style="max-width:100%; margin-bottom:10px; border-radius:12px;">`;
+});
+}
+document.getElementById("preview").innerHTML = html;
+}
 
-    function actualizarPagina() {
-      document.getElementById("paginaLibro").src = `libro.mantener/pagina_${paginaActual}.png`;
-    }
+function verEspacioPersonal() {
+const imagenes = JSON.parse(localStorage.getItem("misImagenes") || "[]");
+let html = "<h3 style='color: white; text-align: center;'>Tus imágenes guardadas:</h3>";
 
-    function generarImagen() {
-      const prompt = document.getElementById("prompt").value;
-      const preview = document.getElementById("preview");
-      if (!prompt.trim()) {
-        preview.innerHTML = "<p style='color: orange;'>Escribe algo primero.</p>";
-        return;
-      }
+if (imagenes.length === 0) {  
+  html += "<p style='color: orange; text-align: center;'>No hay imágenes aún.</p>";  
+} else {  
+  html += `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px;">`;  
+  imagenes.forEach((src, index) => {  
+    html += `  
+      <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 12px; text-align: center;">  
+        <img src="${src}" style="max-width:100%; border-radius: 10px; margin-bottom: 10px;">  
+        <div style="display: flex; flex-direction: column; gap: 8px;">  
+          <button onclick="guardarEnGaleria(${index})">💾 Guardar en Galería de Prompts</button>  
+          <button onclick="compartirImagen('${src}')">📤 Compartir</button>  
+          <button onclick="moverACarpeta('${src}')">📁 Mover a Carpeta</button>  
+        </div>  
+      </div>  
+    `;  
+  });  
+  html += `</div>`;  
+}  
 
-      preview.innerHTML = "<p>Generando imagen...</p>";
+document.getElementById("preview").innerHTML = html;
 
-      fetch("https://lalotuvartar.lalo-579.workers.dev", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt })
-      })
-      .then(res => res.blob())
-      .then(blob => {
-        if (!blob || blob.type !== "image/jpeg") throw new Error("No se recibió imagen válida.");
-        const imgUrl = URL.createObjectURL(blob);
-        preview.innerHTML = `
-          <img src="${imgUrl}" style="max-width:90%; border-radius:12px;">
-          <div class='img-actions'>
-            <a download="imagen_ia.jpg" href="${imgUrl}"><button>Descargar</button></a>
-          </div>`;
-      })
-      .catch(e => {
-        preview.innerHTML = `<p style='color:red;'>Error generando: ${e.message}</p>`;
-      });
-    }
+}
 
-    function verGaleriaAyala() {
-      const imagenes = JSON.parse(localStorage.getItem("misImagenesAyala") || "[]");
-      let html = "";
-      if (imagenes.length === 0) html = "<p>No tienes imágenes aún.</p>";
-      else {
-        imagenes.forEach(src => {
-          html += `<img src="${src}" style="max-width:100%; margin-bottom:10px; border-radius:12px;">`;
-        });
-      }
-      document.getElementById("preview").innerHTML = html;
-    }
+function guardarEnGaleria(index) {
+const misImagenes = JSON.parse(localStorage.getItem("misImagenes") || "[]");
+const galeria = JSON.parse(localStorage.getItem("misImagenesAyala") || "[]");
+galeria.push(misImagenes[index]);
+localStorage.setItem("misImagenesAyala", JSON.stringify(galeria));
+alert("Imagen guardada en Galería de Prompts.");
+}
 
-    function verEspacioPersonal() {
-      const imagenes = JSON.parse(localStorage.getItem("misImagenes") || "[]");
-      let html = "<h3>Tus imágenes guardadas:</h3>";
-      if (imagenes.length === 0) html += "<p>No hay imágenes aún.</p>";
-      imagenes.forEach(src => {
-        html += `<img src="${src}" style="max-width: 100%; margin-bottom: 15px; border-radius: 12px;">`;
-      });
-      document.getElementById("preview").innerHTML = html;
-    }
+function compartirImagen(src) {
+if (navigator.share) {
+navigator.share({ title: "Imagen de Islas Curiel Technologies", url: src });
+} else {
+prompt("Copia el enlace:", src);
+}
+}
 
-    function accederZonaPremium() {
-      alert("Acceso concedido con autenticación de Google");
-      document.getElementById("menu-principal").style.display = "none";
-      document.getElementById("zona-premium").style.display = "block";
-    }
-  </script>
-</body>
-</html>
+function moverACarpeta(src) {
+const carpeta = prompt("Nombre de la carpeta a crear o usar:");
+if (!carpeta) return;
+
+const rutas = JSON.parse(localStorage.getItem("carpetas") || "{}");  
+if (!rutas[carpeta]) rutas[carpeta] = [];  
+
+rutas[carpeta].push(src);  
+localStorage.setItem("carpetas", JSON.stringify(rutas));  
+alert(`Imagen movida a la carpeta "${carpeta}"`);
+
+}
+function verCarpetas() {
+  const rutas = JSON.parse(localStorage.getItem("carpetas") || "{}");
+  let html = "<h3 style='color: white; text-align: center;'>Carpetas Personalizadas:</h3>";
+
+  const nombres = Object.keys(rutas);
+  if (nombres.length === 0) {
+    html += "<p style='color: orange; text-align: center;'>Aún no has creado carpetas.</p>";
+  } else {
+    nombres.forEach(nombre => {
+      html += `<button style="margin: 10px; padding: 10px; border-radius: 8px; font-size: 1em;" onclick="verContenidoCarpeta('${nombre}')">📂 ${nombre}</button>`;
+    });
+  }
+
+  document.getElementById("preview").innerHTML = html;
+}
+
+function verContenidoCarpeta(nombre) {
+  const rutas = JSON.parse(localStorage.getItem("carpetas") || "{}");
+  const imagenes = rutas[nombre] || [];
+
+  let html = `<h3 style='color: white; text-align: center;'>Carpeta: ${nombre}</h3>`;
+  html += `<button onclick="verCarpetas()">🔙 Volver a carpetas</button><br><br>`;
+
+  if (imagenes.length === 0) {
+    html += "<p style='color: orange; text-align: center;'>Esta carpeta está vacía.</p>";
+  } else {
+    html += `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px;">`;
+    imagenes.forEach(src => {
+      html += `
+        <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 12px; text-align: center;">
+          <img src="${src}" style="max-width:100%; border-radius: 10px; margin-bottom: 10px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <a download href="${src}"><button>⬇️ Descargar</button></a>
+            <button onclick="compartirImagen('${src}')">📤 Compartir</button>
+          </div>
+        </div>
+      `;
+    });
+    html += `</div>`;
+  }
+
+  document.getElementById("preview").innerHTML = html;
+}
+
+function accederZonaPremium() {
+alert("Acceso concedido con autenticación de Google");
+document.getElementById("menu-principal").style.display = "none";
+document.getElementById("zona-premium").style.display = "block";
+}
+</script>
+
+</body>    
+</html>    
 """
