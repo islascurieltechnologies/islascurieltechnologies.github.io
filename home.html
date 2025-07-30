@@ -132,36 +132,38 @@
     <p style="margin: 5px 0 0; font-size: 1em;">El lugar donde la tecnología se encuentra con el alma</p>    </footer>        
 <script>    
   let paginaActual = 1;    
-  const totalPaginas = 113;  function iniciarAyalaVerse() {
-const sonido = document.getElementById("intro-sound");
-if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
-document.getElementById("menu-principal").style.display = "none";
-document.getElementById("libro-viewer").style.display = "block";
-actualizarPagina();
-}
+  const totalPaginas = 113;
 
-function actualizarPagina() {
-document.getElementById("paginaLibro").src = libro.mantener/pagina_${paginaActual}.png;
-}
+  function iniciarAyalaVerse() {
+    const sonido = document.getElementById("intro-sound");
+    if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
+    document.getElementById("menu-principal").style.display = "none";
+    document.getElementById("libro-viewer").style.display = "block";
+    actualizarPagina();
+  }
 
-function paginaAnterior() {
-if (paginaActual > 1) {
-paginaActual--;
-actualizarPagina();
-}
-}
+  function actualizarPagina() {
+    document.getElementById("paginaLibro").src = `libro.mantener/pagina_${paginaActual}.png`;
+  }
 
-function paginaSiguiente() {
-if (paginaActual < totalPaginas) {
-paginaActual++;
-actualizarPagina();
-}
-}
+  function paginaAnterior() {
+    if (paginaActual > 1) {
+      paginaActual--;
+      actualizarPagina();
+    }
+  }
 
-function regresarMenu() {
-document.getElementById("libro-viewer").style.display = "none";
-document.getElementById("menu-principal").style.display = "flex";
-}
+  function paginaSiguiente() {
+    if (paginaActual < totalPaginas) {
+      paginaActual++;
+      actualizarPagina();
+    }
+  }
+
+  function regresarMenu() {
+    document.getElementById("libro-viewer").style.display = "none";
+    document.getElementById("menu-principal").style.display = "flex";
+  }
 </script>
 
 </body>        
