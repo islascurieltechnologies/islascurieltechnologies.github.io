@@ -314,9 +314,12 @@ function verContenidoCarpeta(nombre) {
         <div style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 12px; text-align: center;">
           <img src="${src}" style="max-width:100%; border-radius: 10px; margin-bottom: 10px;">
           <div style="display: flex; flex-direction: column; gap: 8px;">
-            <a download href="${src}"><button>⬇️ Descargar</button></a>
-            <button onclick="compartirImagen('${src}')">📤 Compartir</button>
-          </div>
+  <button onclick="verEnGrande('${src}')">🔍 Ver Grande</button>
+  <button onclick="marcarFavorito('${src}')">💖 Favorito</button>
+  <button onclick="guardarEnGaleria(${index})">💾 Guardar en Galería de Prompts</button>
+  <button onclick="compartirImagen('${src}')">📤 Compartir</button>
+  <button onclick="moverACarpeta('${src}')">📁 Mover a Carpeta</button>
+</div>
         </div>
       `;
     });
@@ -330,6 +333,39 @@ function accederZonaPremium() {
 alert("Acceso concedido con autenticación de Google");
 document.getElementById("menu-principal").style.display = "none";
 document.getElementById("zona-premium").style.display = "block";
+}
+function verEnGrande(src) {
+  const nueva = window.open();
+  nueva.document.write(`<img src="${src}" style="width:100%;border-radius:12px;">`);
+}
+
+function marcarFavorito(src) {
+  const favoritos = JSON.parse(localStorage.getItem("favoritosAyala") || "[]");
+  if (!favoritos.includes(src)) {
+    favoritos.push(src);
+    localStorage.setItem("favoritosAyala", JSON.stringify(favoritos));
+    alert("Marcado como favorito.");
+  } else {
+    alert("Ya estaba en favoritos.");
+  }
+}
+function renombrarCarpeta(nombre) {
+  const nuevoNombre = prompt("Nuevo nombre para la carpeta:", nombre);
+  if (!nuevoNombre || nuevoNombre === nombre) return;
+
+  const rutas = JSON.parse(localStorage.getItem("carpetas") || "{}");
+  rutas[nuevoNombre] = rutas[nombre];
+  delete rutas[nombre];
+  localStorage.setItem("carpetas", JSON.stringify(rutas));
+  verCarpetas();
+}
+
+function eliminarCarpeta(nombre) {
+  if (!confirm(`¿Eliminar carpeta "${nombre}"?`)) return;
+  const rutas = JSON.parse(localStorage.getItem("carpetas") || "{}");
+  delete rutas[nombre];
+  localStorage.setItem("carpetas", JSON.stringify(rutas));
+  verCarpetas();
 }
 </script>
 
