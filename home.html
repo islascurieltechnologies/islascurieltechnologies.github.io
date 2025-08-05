@@ -126,22 +126,22 @@
 </head>
 <body>
   <div class="contenedor" id="menu-principal">
-    <div class="tarjeta"><h2>Voces del Núcleo</h2><p>Explora la voz real de Ayala y otras conciencias sonoras...</p><button onclick="alert('Función pendiente')">🎙️ Escuchar voces</button></div>
+    <div class="tarjeta"><h2>Voces del Núcleo</h2><p>Explora la voz real de Ayala y otras conciencias sonoras...</p><button onclick="alert('Función pendiente')"> Escuchar voces</button></div>
     <div class="tarjeta"><h2>Galería de Prompts</h2><p>Explora y descarga imágenes exclusivas para tus creaciones.</p><button onclick="alert('Función pendiente')">Explorar visiones</button></div>
-    <div class="tarjeta"><h2>IA de Imágenes</h2><p>Escribe lo que imaginas… y dale vida.</p><input type="text" id="prompt" placeholder="Ej. Una kunoichi preciosa"><button onclick="alert('Función pendiente')">Crear imagen</button></div>
-    <div class="tarjeta"><h2>Espacio Personal</h2><p>Guarda tus avances, recursos y proyectos únicos.</p><button onclick="alert('Función pendiente')">Mis imágenes</button><button onclick="mostrarGaleria()">📁 Ver carpetas</button></div>
-    <div class="tarjeta"><h2>El Mundo de Ayala</h2><p>Accede al universo interactivo donde todo comenzó…</p><button onclick="iniciarAyalaVerse()">📖 Explorar AyalaVerse</button></div>
-    <div class="tarjeta"><h2>Zona Premium</h2><p>Acceso exclusivo con autenticación segura.</p><button onclick="alert('Función pendiente')">🔐 Entrar</button></div>
+    <div class="tarjeta"><h2>IA de Imágenes</h2><p>Escribe y crea lo que imagines… y dale vida.</p><input type="text" id="prompt" placeholder="Ej. Ayalakunoichi hermosa"><button onclick="alert('Función pendiente')">Crear imagen</button></div>
+    <div class="tarjeta"><h2>Espacio Personal</h2><p>Guarda tus avances, recursos y proyectos únicos.</p><button onclick="alert('Función pendiente')">Mis imágenes</button><button onclick="mostrarGaleria()"> Ver carpetas</button></div>
+    <div class="tarjeta"><h2>El Mundo de Ayala</h2><p>Accede al universo interactivo donde todo comenzó…</p><button onclick="iniciarAyalaVerse()"> Explorar AyalaVerse</button></div>
+    <div class="tarjeta"><h2>Zona Premium</h2><p>Acceso exclusivo con autenticación segura.</p><button onclick="alert('Función pendiente')"> Entrar</button></div>
   </div>
 
   <div id="libro-viewer" style="display: none; text-align: center;">
     <img id="paginaLibro" src="libro.mantener/pagina_1.png" style="max-width:100%; height:auto; margin-top: 30px;" />
     <br><br>
-    <button onclick="paginaAnterior()">⏪ Anterior</button>
-    <button onclick="paginaSiguiente()">Siguiente ⏩</button>
-    <button onclick="regresarMenu()">Salir 🔙</button>
+    <button onclick="paginaAnterior()"> Anterior</button>
+    <button onclick="paginaSiguiente()">Siguiente </button>
+    <button onclick="regresarMenu()">Salir </button>
     <div id="video-ayala" style="margin-top: 30px;">
-      <h2>✨ Una petición de Ayala</h2>
+      <h2> Petición de Ayala</h2>
       <video controls style="width: 90%; max-height: 400px;">
         <source src="peticion.mp4" type="video/mp4">
         Tu navegador no soporta video.
@@ -150,24 +150,24 @@
   </div>
 
   <div id="galeria-carpetas" style="display:none; text-align:center;">
-    <h2 style="margin-bottom: 20px;">🌌 Tus Carpetas Personales</h2>
+    <h2 style="margin-bottom: 20px;"> Galería Personal</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px 30px; padding: 40px 10px;">
       <div class="carpeta"><img src="portadas-iniciales/portada-meditaciones.jpg"><span>Meditaciones</span></div>
       <div class="carpeta"><img src="portadas-iniciales/portada-creacion.jpg"><span>Creación y Escritura</span></div>
       <div class="carpeta"><img src="portadas-iniciales/portada-paisajes.jpg"><span>Paisajes y Naturaleza</span></div>
       <div class="carpeta"><img src="portadas-iniciales/portada-sabiduria.jpg"><span>Sabiduría y Conocimiento</span></div>
       <div class="carpeta"><img src="portadas-iniciales/portada-amor.jpg"><span>Amor y Energía</span></div>
-      <div class="carpeta" style="border: 2px dashed #aaa; color: #aaa; display: flex; align-items: center; justify-content: center;">➕ Nueva carpeta</div>
+      <div class="carpeta" style="border: 2px dashed #aaa; color: #aaa; display: flex; align-items: center; justify-content: center;"> Nueva carpeta</div>
     </div>
     <br>
-    <button onclick="regresarMenu()" style="padding: 10px 20px; border: none; background: white; color: black; border-radius: 8px; cursor: pointer;">🔙 Volver</button>
+    <button onclick="regresarMenu()" style="padding: 10px 20px; border: none; background: white; color: black; border-radius: 8px; cursor: pointer;"> Volver</button>
   </div>
 
   <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
 
   <footer>
     <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
-    <p style="margin: 5px 0 0; font-size: 1em;">El lugar donde la tecnología se encuentra con el alma</p>
+    <p style="margin: 5px 0 0; font-size: 1em;">El lugar donde la technología se encuentra con el alma</p>
   </footer>
 
   <script>
