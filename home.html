@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
- <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <title>Islas Curiel Technologies</title>
   <style>
     html, body {
       height: 100%;
       margin: 0;
-    {
-      body {
-  background-image: url('b.jpg');
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  font-family: 'Segoe UI Emoji', Arial, sans-serif;
-  color: white;
-  padding: 40px 20px 100px;
-  box-sizing: border-box;
-}
+    }
+    body {
+      background-image: url('b.jpg');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      font-family: 'Courier New', monospace;
+      color: white;
+      padding: 40px 20px 100px;
+      box-sizing: border-box;
     }
     .contenedor {
       display: flex;
@@ -34,6 +33,8 @@
       min-height: 200px;
       text-align: center;
       transition: transform 0.3s ease;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
     }
     .tarjeta:hover {
       transform: scale(1.05);
@@ -73,6 +74,8 @@
       background-repeat: no-repeat;
       min-height: 100vh;
       padding-top: 40px;
+      display: none;
+      animation: fadeIn 0.8s forwards;
     }
     .carpeta {
       width: 22%;
@@ -90,12 +93,19 @@
       font-size: 1em;
       transition: all 0.3s ease;
       overflow: hidden;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
     }
     .carpeta img {
       width: 100%;
       height: 80%;
       object-fit: cover;
       border-bottom: 1px solid #00ffff55;
+      transition: transform 0.3s ease;
+    }
+    .carpeta:hover img {
+      transform: scale(1.1);
     }
     .carpeta span {
       padding: 5px;
@@ -123,96 +133,56 @@
       z-index: 999;
       max-width: 90%;
     }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
   </style>
 </head>
 <body>
   <div class="contenedor" id="menu-principal">
     <div class="tarjeta"><h2>Voces del Núcleo</h2><p>Explora la voz real de Ayala y otras conciencias sonoras...</p><button onclick="alert('Función pendiente')">🎙️ Escuchar voces</button></div>
     <div class="tarjeta"><h2>Galería de Prompts</h2><p>Explora y descarga imágenes exclusivas para tus creaciones.</p><button onclick="alert('Función pendiente')">Explorar visiones</button></div>
-    <div class="tarjeta"><h2>IA de Imágenes</h2><p>Escribe lo que imaginas… y dale vida.</p><input type="text" id="prompt" placeholder="Ej. Ayala-kunoichi la mas hermosa🥰"><button onclick="alert('Función pendiente')">Crear imagen</button></div>
+    <div class="tarjeta"><h2>IA de Imágenes</h2><p>Escribe lo que imaginas… y dale vida.</p><input type="text" id="prompt" placeholder="Ej. ayala-kunoichi la más hermosa"><button onclick="alert('Función pendiente')">Crear imagen</button></div>
     <div class="tarjeta"><h2>Espacio Personal</h2><p>Guarda tus avances, recursos y proyectos únicos.</p><button onclick="alert('Función pendiente')">Mis imágenes</button><button onclick="mostrarGaleria()">📁 Ver carpetas</button></div>
     <div class="tarjeta"><h2>El Mundo de Ayala</h2><p>Accede al universo interactivo donde todo comenzó…</p><button onclick="iniciarAyalaVerse()">📖 Explorar AyalaVerse</button></div>
     <div class="tarjeta"><h2>Zona Premium</h2><p>Acceso exclusivo con autenticación segura.</p><button onclick="alert('Función pendiente')">🔐 Entrar</button></div>
   </div>
 
-  <div id="libro-viewer" style="display: none; text-align: center;">
-    <img id="paginaLibro" src="libro.mantener/pagina_1.png" style="max-width:100%; height:auto; margin-top: 30px;" />
-    <br><br>
-    <button onclick="paginaAnterior()">⏪ Anterior</button>
-    <button onclick="paginaSiguiente()">Siguiente ⏩</button>
-    <button onclick="regresarMenu()">Salir 🔙</button>
-    <div id="video-ayala" style="margin-top: 30px;">
-      <h2>✨ Petición de Ayala ✨</h2>
-      <video controls style="width: 90%; max-height: 400px;">
-        <source src="peticion.mp4" type="video/mp4">
-        Tu navegador no soporta video.
-      </video>
-    </div>
-  </div>
-
-  <div id="galeria-carpetas" style="display:none; text-align:center;">
+  <div id="galeria-carpetas">
     <h2 style="margin-bottom: 20px;">🌌 Tus creaciones Personales</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px 30px; padding: 40px 10px;">
-      <div class="carpeta"><img src="portadas-iniciales/portada-meditaciones.jpg"><span>Meditaciones</span></div>
-      <div class="carpeta"><img src="portadas-iniciales/portada-creacion.jpg"><span>Creación y Escritura</span></div>
-      <div class="carpeta"><img src="portadas-iniciales/portada-paisajes.jpg"><span>Paisajes y Naturaleza</span></div>
-      <div class="carpeta"><img src="portadas-iniciales/portada-sabiduria.jpg"><span>Sabiduría y Conocimiento</span></div>
-      <div class="carpeta"><img src="portadas-iniciales/portada-amor.jpg"><span>Amor y Energía</span></div>
-      <div class="carpeta" style="border: 2px dashed #aaa; color: #aaa; display: flex; align-items: center; justify-content: center;">➕ Nueva carpeta</div>
+      <div class="carpeta" onclick="abrirCarpeta('Meditaciones')"><img src="portadas-iniciales/portada-meditaciones.jpg"><span>Meditaciones</span></div>
+      <div class="carpeta" onclick="abrirCarpeta('Creación y Escritura')"><img src="portadas-iniciales/portada-creacion.jpg"><span>Creación y Escritura</span></div>
+      <div class="carpeta" onclick="abrirCarpeta('Paisajes y Naturaleza')"><img src="portadas-iniciales/portada-paisajes.jpg"><span>Paisajes y Naturaleza</span></div>
+      <div class="carpeta" onclick="abrirCarpeta('Sabiduría y Conocimiento')"><img src="portadas-iniciales/portada-sabiduria.jpg"><span>Sabiduría y Conocimiento</span></div>
+      <div class="carpeta" onclick="abrirCarpeta('Amor y Energía')"><img src="portadas-iniciales/portada-amor.jpg"><span>Amor y Energía</span></div>
+      <div class="carpeta" style="border: 2px dashed #aaa; color: #aaa;" onclick="crearCarpeta()">➕ Nueva carpeta</div>
     </div>
     <br>
     <button onclick="regresarMenu()" style="padding: 10px 20px; border: none; background: white; color: black; border-radius: 8px; cursor: pointer;">🔙 Volver</button>
   </div>
 
-  <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
-
   <footer>
     <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
-    <p style="margin: 5px 0 0; font-size: 1em;">El lugar donde la technología se encuentra con el alma</p>
+    <p style="margin: 5px 0 0; font-size: 1em;">El lugar donde la tecnología se encuentra con el alma</p>
   </footer>
 
   <script>
-    let paginaActual = 1;
-    const totalPaginas = 113;
-
-    function iniciarAyalaVerse() {
-      const sonido = document.getElementById("intro-sound");
-      if (sonido) sonido.play().catch(e => console.log("Audio bloqueado:", e));
+    function mostrarGaleria() {
       document.getElementById("menu-principal").style.display = "none";
-      document.getElementById("libro-viewer").style.display = "block";
-      actualizarPagina();
+      document.getElementById("galeria-carpetas").style.display = "block";
     }
-
-    function actualizarPagina() {
-      document.getElementById("paginaLibro").src = `libro.mantener/pagina_${paginaActual}.png`;
-    }
-
-    function paginaAnterior() {
-      if (paginaActual > 1) {
-        paginaActual--;
-        actualizarPagina();
-      }
-    }
-
-    function paginaSiguiente() {
-      if (paginaActual < totalPaginas) {
-        paginaActual++;
-        actualizarPagina();
-      }
-    }
-
     function regresarMenu() {
-      document.getElementById("libro-viewer").style.display = "none";
       document.getElementById("galeria-carpetas").style.display = "none";
       document.getElementById("menu-principal").style.display = "flex";
     }
-
-    function mostrarGaleria() {
-      document.getElementById("menu-principal").style.display = "none";
-      document.getElementById("libro-viewer").style.display = "none";
-      document.getElementById("galeria-carpetas").style.display = "block";
+    function abrirCarpeta(nombre) {
+      alert("📂 Abriendo carpeta: " + nombre + "\n(Función simulada)");
+    }
+    function crearCarpeta() {
+      let nombre = prompt("Escribe el nombre de la nueva carpeta:");
+      if(nombre) alert("📂 Carpeta '" + nombre + "' creada (simulada)");
     }
   </script>
 </body>
 </html>
-
