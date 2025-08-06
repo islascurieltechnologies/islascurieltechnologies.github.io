@@ -55,7 +55,6 @@
       border: none;
       font-size: 1em;
     }
-
     /* Botones con efecto neón */
     .tarjeta button.boton-neon {
       background: rgba(0, 0, 0, 0.6);
@@ -68,19 +67,16 @@
       transition: all 0.3s ease;
       box-shadow: 0 0 8px #00ffff55;
     }
-
     .tarjeta button.boton-neon:hover {
       color: #00ffff;
       border-color: #00ffff;
       box-shadow: 0 0 10px #00ffffaa, 0 0 20px #00ffff88 inset;
       transform: scale(1.05);
     }
-
     .tarjeta button.boton-neon:active {
       transform: scale(0.98);
       box-shadow: 0 0 15px #00ffffcc, 0 0 25px #00ffffaa inset;
     }
-
     #galeria-carpetas {
       background-image: url('fondo-galeria.jpg');
       background-size: cover;
@@ -105,6 +101,7 @@
       font-size: 1em;
       transition: all 0.3s ease;
       overflow: hidden;
+      cursor: pointer;
     }
     .carpeta img {
       width: 100%;
@@ -138,14 +135,75 @@
       z-index: 999;
       max-width: 90%;
     }
+    /* Modal con zoom suave */
+    #visorModal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 50, 0.5);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+    }
+    #visorContenido {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      animation: zoomIn 0.4s ease;
+    }
+    #visorContenido img {
+      max-width: 50vw;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ffffaa;
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .menuLateral {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px #00ffff88;
+      min-width: 200px;
+    }
+    .menuLateral button {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s;
+    }
+    .menuLateral button:hover {
+      color: #00ffff;
+      border-color: #00ffff;
+      box-shadow: 0 0 10px #00ffffaa inset;
+    }
+    .menuLateral .cerrar {
+      background: red;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+    }
   </style>
 </head>
 <body>
   <div class="contenedor" id="menu-principal">
-    <div class="tarjeta"><h2>Voces del Núcleo</h2><p>Explora la voz real de Ayala y otras conciencias sonoras...</p><button class="boton-neon" onclick="reproducirSonido(); alert('Función pendiente')">🎙️ Escuchar voces</button></div>
-    <div class="tarjeta"><h2>Galería de Prompts</h2><p>Explora y descarga imágenes exclusivas para tus creaciones.</p><button class="boton-neon" onclick="reproducirSonido(); alert('Función pendiente')">Explorar visiones</button></div>
-    <div class="tarjeta"><h2>IA de Imágenes</h2><p>Escribe lo que imaginas… y dale vida.</p><input type="text" id="prompt" placeholder="Ej. ayala-kunoichi la mas hermosa"><button class="boton-neon" onclick="reproducirSonido(); alert('Función pendiente')">Crear imagen</button></div>
-    <div class="tarjeta"><h2>Espacio Personal</h2><p>Guarda tus avances, recursos y proyectos únicos.</p><button class="boton-neon" onclick="reproducirSonido(); alert('Función pendiente')">Mis imágenes</button><button class="boton-neon" onclick="reproducirSonido(); mostrarGaleria()">📁 Ver carpetas</button></div>
+    <div class="tarjeta"><h2>Voces del Núcleo</h2><p>Explora la voz real de Ayala...</p><button class="boton-neon" onclick="reproducirSonido(); alert('Función pendiente')">🎙️ Escuchar voces</button></div>
+    <div class="tarjeta"><h2>Galería de Prompts</h2><p>Explora y descarga imágenes...</p><button class="boton-neon" onclick="reproducirSonido(); alert('Función pendiente')">Explorar visiones</button></div>
+    <div class="tarjeta"><h2>IA de Imágenes</h2><p>Escribe lo que imaginas…</p><input type="text" id="prompt" placeholder="Ej. ayala-kunoichi la mas hermosa"><button class="boton-neon" onclick="reproducirSonido(); alert('Función pendiente')">Crear imagen</button></div>
+    <div class="tarjeta"><h2>Espacio Personal</h2><p>Guarda tus avances...</p><button class="boton-neon" onclick="reproducirSonido(); mostrarGaleria()">📁 Ver carpetas</button></div>
     <div class="tarjeta"><h2>El Mundo de Ayala</h2><p>Accede al universo interactivo donde todo comenzó…</p><button class="boton-neon" onclick="reproducirSonido(); iniciarAyalaVerse()">📖 Explorar AyalaVerse</button></div>
     <div class="tarjeta"><h2>Zona Premium</h2><p>Acceso exclusivo con autenticación segura.</p><button class="boton-neon" onclick="reproducirSonido(); alert('Función pendiente')">🔐 Entrar</button></div>
   </div>
@@ -166,24 +224,36 @@
   </div>
 
   <div id="galeria-carpetas" style="display:none; text-align:center;">
-    <h2 style="margin-bottom: 20px;">🌌 Tus Creaciones personales</h2>
+    <h2>🌌 Tus Creaciones personales</h2>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px 30px; padding: 40px 10px;">
-      <div class="carpeta"><img src="portadas-iniciales/portada-meditaciones.jpg"><span>Meditaciones</span></div>
-      <div class="carpeta"><img src="portadas-iniciales/portada-creacion.jpg"><span>Creación y Escritura</span></div>
-      <div class="carpeta"><img src="portadas-iniciales/portada-paisajes.jpg"><span>Paisajes y Naturaleza</span></div>
-      <div class="carpeta"><img src="portadas-iniciales/portada-sabiduria.jpg"><span>Sabiduría y Conocimiento</span></div>
-      <div class="carpeta"><img src="portadas-iniciales/portada-amor.jpg"><span>Amor y Energía</span></div>
-      <div class="carpeta" style="border: 2px dashed #aaa; color: #aaa; display: flex; align-items: center; justify-content: center;">➕ Nueva carpeta</div>
+      <div class="carpeta" onclick="abrirModal('portadas-iniciales/portada-meditaciones.jpg')"><img src="portadas-iniciales/portada-meditaciones.jpg"><span>Meditaciones</span></div>
+      <div class="carpeta" onclick="abrirModal('portadas-iniciales/portada-creacion.jpg')"><img src="portadas-iniciales/portada-creacion.jpg"><span>Creación</span></div>
     </div>
     <br>
-    <button onclick="reproducirSonido(); regresarMenu()" style="padding: 10px 20px; border: none; background: white; color: black; border-radius: 8px; cursor: pointer;">🔙 Volver</button>
+    <button onclick="reproducirSonido(); regresarMenu()">🔙 Volver</button>
+  </div>
+
+  <!-- Modal visor -->
+  <div id="visorModal" onclick="cerrarModal(event)">
+    <div id="visorContenido">
+      <img id="imagenModal" src="" alt="Vista ampliada">
+      <div class="menuLateral">
+        <button>📄 Renombrar carpeta</button>
+        <button>🗑 Borrar carpeta</button>
+        <button>📁 Crear carpeta</button>
+        <button>📦 Guardar en otra carpeta</button>
+        <button>🌐 Subir a galería</button>
+        <button>⬇ Descargar</button>
+        <button class="cerrar" onclick="cerrarModal()">Cerrar</button>
+      </div>
+    </div>
   </div>
 
   <audio id="intro-sound" src="entrada.mp3" preload="auto"></audio>
 
   <footer>
-    <h2 style="margin: 0; font-size: 1.2em;">Islas Curiel Technologies</h2>
-    <p style="margin: 5px 0 0; font-size: 1em;">El lugar donde la technología se encuentra con el alma</p>
+    <h2>Islas Curiel Technologies</h2>
+    <p>El lugar donde la tecnología se encuentra con el alma</p>
   </footer>
 
   <script>
@@ -194,42 +264,45 @@
     function reproducirSonido() {
       if (sonidoMenu) sonidoMenu.play().catch(e => console.log("Audio bloqueado:", e));
     }
-
     function iniciarAyalaVerse() {
       reproducirSonido();
       document.getElementById("menu-principal").style.display = "none";
       document.getElementById("libro-viewer").style.display = "block";
       actualizarPagina();
     }
-
     function actualizarPagina() {
       document.getElementById("paginaLibro").src = `libro.mantener/pagina_${paginaActual}.png`;
     }
-
     function paginaAnterior() {
       if (paginaActual > 1) {
         paginaActual--;
         actualizarPagina();
       }
     }
-
     function paginaSiguiente() {
       if (paginaActual < totalPaginas) {
         paginaActual++;
         actualizarPagina();
       }
     }
-
     function regresarMenu() {
       document.getElementById("libro-viewer").style.display = "none";
       document.getElementById("galeria-carpetas").style.display = "none";
       document.getElementById("menu-principal").style.display = "flex";
     }
-
     function mostrarGaleria() {
       document.getElementById("menu-principal").style.display = "none";
       document.getElementById("libro-viewer").style.display = "none";
       document.getElementById("galeria-carpetas").style.display = "block";
+    }
+    function abrirModal(src) {
+      document.getElementById('visorModal').style.display = 'flex';
+      document.getElementById('imagenModal').src = src;
+    }
+    function cerrarModal(event) {
+      if (!event || event.target.id === 'visorModal') {
+        document.getElementById('visorModal').style.display = 'none';
+      }
     }
   </script>
 </body>
